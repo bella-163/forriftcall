@@ -1,0 +1,92 @@
+import type { FeatureCard, GuideCard, NavItem, QuickStartItem } from "@/types/site";
+
+export const navItems: NavItem[] = [
+  { label: "首頁", href: "/" },
+  { label: "職業介紹", href: "/classes" },
+  { label: "裝備介紹", href: "/equipment" },
+  { label: "怪物介紹", href: "/monsters" },
+  { label: "功能與指令", href: "/commands" },
+  { label: "副本攻略", href: "/dungeons" },
+  { label: "最新消息", href: "/news" },
+];
+
+export const featureCards: FeatureCard[] = [
+  {
+    title: "職業介紹",
+    eyebrow: "多元職業・自由轉職",
+    description: "探索專屬你的戰鬥風格，了解各職業定位、技能與成長路線。",
+    href: "/classes",
+    theme: "crimson",
+  },
+  {
+    title: "裝備介紹",
+    eyebrow: "史詩裝備・強化鍛造",
+    description: "蒐集神器、強化鍛造、附魔養成，打造屬於你的極限戰力。",
+    href: "/equipment",
+    theme: "gold",
+  },
+  {
+    title: "怪物介紹",
+    eyebrow: "強大魔物・首領降臨",
+    description: "掌握怪物出沒地點、技能機制與掉落物，讓討伐更有效率。",
+    href: "/monsters",
+    theme: "violet",
+  },
+  {
+    title: "功能與指令",
+    eyebrow: "實用指令・系統功能",
+    description: "整理伺服器常用指令、系統功能與玩家社群操作指南。",
+    href: "/commands",
+    theme: "blue",
+  },
+];
+
+export const guideCards: GuideCard[] = [
+  {
+    title: "新手必看！快速上手指南",
+    category: "熱門",
+    description: "從零開始熟悉斷界召喚的冒險流程。",
+    rating: "4.8",
+  },
+  {
+    title: "深淵之塔 全層攻略",
+    category: "進階",
+    description: "BOSS 機制、通關技巧與隊伍配置解析。",
+    rating: "4.9",
+  },
+  {
+    title: "畢業裝備取得攻略",
+    category: "裝備",
+    description: "最強裝備獲取路線與養成順序整理。",
+    rating: "4.7",
+  },
+  {
+    title: "異界副本 完整解析",
+    category: "副本",
+    description: "副本機制、推薦等級與戰鬥注意事項。",
+    rating: "4.6",
+  },
+];
+
+export const quickStartItems: QuickStartItem[] = [
+  {
+    title: "遊戲連線",
+    description: "加入伺服器開始冒險",
+    action: "複製 IP",
+  },
+  {
+    title: "新手教學",
+    description: "必看！新手成長指引",
+    action: "立即查看",
+  },
+  {
+    title: "常見問題",
+    description: "解答你的所有疑問",
+    action: "前往查看",
+  },
+  {
+    title: "玩家社群",
+    description: "加入社群一起交流",
+    action: "加入社群",
+  },
+];
