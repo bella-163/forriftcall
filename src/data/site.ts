@@ -46,25 +46,13 @@ export const guideCards: GuideCard[] = [
     title: "新手必看！快速上手指南",
     category: "熱門",
     description: "從零開始熟悉斷界召喚的冒險流程。",
-    rating: "4.8",
+    rating: "5.0",
   },
   {
-    title: "深淵之塔 全層攻略",
-    category: "進階",
-    description: "BOSS 機制、通關技巧與隊伍配置解析。",
-    rating: "4.9",
-  },
-  {
-    title: "畢業裝備取得攻略",
+    title: "推薦裝備",
     category: "裝備",
     description: "最強裝備獲取路線與養成順序整理。",
-    rating: "4.7",
-  },
-  {
-    title: "異界副本 完整解析",
-    category: "副本",
-    description: "副本機制、推薦等級與戰鬥注意事項。",
-    rating: "4.6",
+    rating: "4.9",
   },
 ];
 
