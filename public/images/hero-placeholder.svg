@@ -1,0 +1,21 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#09070D"/>
+  <radialGradient id="g1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 320) rotate(90) scale(460 760)">
+    <stop stop-color="#8B5CF6" stop-opacity="0.55"/>
+    <stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="g2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(420 430) rotate(45) scale(520 520)">
+    <stop stop-color="#D92D45" stop-opacity="0.48"/>
+    <stop offset="1" stop-color="#D92D45" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1600" height="900" fill="url(#g1)"/>
+  <rect width="1600" height="900" fill="url(#g2)"/>
+  <path d="M0 700 C240 620 380 650 560 560 C760 460 900 520 1060 430 C1260 320 1440 400 1600 300 V900 H0 V700Z" fill="#120B18"/>
+  <path d="M0 760 C260 700 420 730 610 650 C800 570 950 610 1160 520 C1360 440 1500 500 1600 430 V900 H0 V760Z" fill="#07060A"/>
+  <g opacity="0.8">
+    <rect x="696" y="198" width="208" height="208" rx="24" stroke="#D92D45" stroke-width="3"/>
+    <rect x="727" y="229" width="146" height="146" rx="16" stroke="#8B5CF6" stroke-width="2"/>
+    <path d="M800 112 L837 264 L990 302 L837 340 L800 492 L763 340 L610 302 L763 264 L800 112Z" stroke="#F8F3EA" stroke-opacity="0.65" stroke-width="2"/>
+  </g>
+  <text x="800" y="810" text-anchor="middle" fill="#F8F3EA" fill-opacity="0.45" font-family="serif" font-size="34" letter-spacing="10">斷界召喚 HERO PLACEHOLDER</text>
+</svg>
