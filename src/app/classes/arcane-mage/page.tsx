@@ -6,13 +6,15 @@ export default function ArcaneMagePage() {
       name="萬象法師"
       role="爆發輸出・元素魔法師"
       color="violet"
-      description="掌握萬象之力，以元素魔法橫掃戰場、輸出無雙。擁有遊戲中最高的單次爆發傷害，但需要隊友保護才能發揮全力。"
+      image="/images/magician2.jpg"
+      description="萬象法師是一名掌控多重元素的遠程施法者，擁有穩定的輸出能力與絕佳的群體魔法。雖然缺乏機動力與體質，但只要站位得當，就能發揮毀滅性的戰場影響力。"
       stats={[
-        { label: "生命值", value: 45 },
-        { label: "攻擊力", value: 98 },
-        { label: "防禦力", value: 25 },
-        { label: "機動性", value: 50 },
-        { label: "團隊支援", value: 55 },
+        { label: "傷害", value: "B" },
+        { label: "射程", value: "A" },
+        { label: "機動", value: "D" },
+        { label: "控制", value: "A" },
+        { label: "魔法", value: "A" },
+        { label: "體質", value: "B" },
       ]}
       skills={[
         { name: "元素爆炎", description: "召喚強力的元素爆炸，對範圍內敵人造成巨量魔法傷害。" },

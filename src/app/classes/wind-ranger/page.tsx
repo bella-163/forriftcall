@@ -6,13 +6,15 @@ export default function WindRangerPage() {
       name="疾風遊俠"
       role="遠距輸出・機動射手"
       color="blue"
-      description="來去如風、箭無虛發，以靈活機動在遠距離掌控戰局。擅長持續輸出與快速位移，是副本中穩定的遠程傷害來源。"
+      image="/images/ranger2.png"
+      description="疾風遊俠是身法輕盈、箭術精準的遠程職業，以風的速度制敵於無形。擁有穩定的傷害與控制，能在戰場上保持距離並持續穩定輸出。擅長牽制與游擊，是一位相當均衡、機動性極高的弓箭手。"
       stats={[
-        { label: "生命值", value: 60 },
-        { label: "攻擊力", value: 85 },
-        { label: "防禦力", value: 40 },
-        { label: "機動性", value: 90 },
-        { label: "團隊支援", value: 45 },
+        { label: "傷害", value: "B" },
+        { label: "射程", value: "A" },
+        { label: "機動", value: "A" },
+        { label: "控制", value: "A" },
+        { label: "魔法", value: "C" },
+        { label: "體質", value: "C" },
       ]}
       skills={[
         { name: "穿雲箭", description: "蓄力射出一支高速穿透箭矢，穿透多個敵人並造成大量傷害。" },

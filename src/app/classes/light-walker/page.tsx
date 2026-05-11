@@ -6,13 +6,15 @@ export default function LightWalkerPage() {
       name="裁光行者"
       role="神聖輔助・治癒者"
       color="gold"
-      description="以神聖之光治癒盟友、懲戒敵人，是支撐隊伍續戰的核心。掌握強力治療與輔助技能，同時能對不死系怪物造成額外傷害。"
+      image="/images/priest2.jpg"
+      description="一個半戰士半輔助的神聖職業，擅長光屬性劍技與恢復、淨化。裁光行者既是審判的執行者，也是恩澤的賜予者，他能在戰鬥中同時施展治癒之力，將攻擊與守護融為一體。"
       stats={[
-        { label: "生命值", value: 70 },
-        { label: "攻擊力", value: 50 },
-        { label: "防禦力", value: 65 },
-        { label: "機動性", value: 55 },
-        { label: "團隊支援", value: 98 },
+        { label: "傷害", value: "C" },
+        { label: "射程", value: "B" },
+        { label: "機動", value: "B" },
+        { label: "體質", value: "B" },
+        { label: "魔法", value: "B" },
+        { label: "控制", value: "C" },
       ]}
       skills={[
         { name: "聖光治癒", description: "對目標隊友施放治療，恢復大量生命值，並附加短暫的回復效果。" },

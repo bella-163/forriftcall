@@ -6,13 +6,15 @@ export default function ShadowAssassinPage() {
       name="暗影刺客"
       role="單體爆發・隱匿刺殺者"
       color="violet"
-      description="潛行於暗處、一擊致命，以極致爆發力終結目標。擅長迅速消滅高價值單體敵人，但在群戰中需要謹慎選擇出手時機。"
+      image="/images/assassin2.jpg"
+      description="暗影刺客為極致的近戰爆發職業，擁有全職業最高的傷害與機動性，專注於擊殺單一目標。代價是體質、射程、魔法與控制能力皆為最低。"
       stats={[
-        { label: "生命值", value: 50 },
-        { label: "攻擊力", value: 95 },
-        { label: "防禦力", value: 30 },
-        { label: "機動性", value: 92 },
-        { label: "團隊支援", value: 30 },
+        { label: "傷害", value: "A" },
+        { label: "射程", value: "C" },
+        { label: "機動", value: "A" },
+        { label: "體質", value: "D" },
+        { label: "魔法", value: "D" },
+        { label: "控制", value: "D" },
       ]}
       skills={[
         { name: "暗影遁形", description: "進入隱匿狀態，短時間內無法被敵人偵測，並使下次攻擊傷害大幅提升。" },

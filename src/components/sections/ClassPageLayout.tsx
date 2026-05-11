@@ -5,12 +5,15 @@ type Skill = {
   description: string;
 };
 
+const gradeMap: Record<string, number> = { A: 5, B: 4, C: 3, D: 2, E: 1 };
+
 type ClassPageProps = {
   name: string;
   role: string;
   description: string;
   color: "crimson" | "gold" | "violet" | "blue" | "green";
-  stats: { label: string; value: number }[];
+  image?: string;
+  stats: { label: string; value: number | string }[];
   skills: Skill[];
   tips: string[];
 };
@@ -53,7 +56,7 @@ const colorMap = {
   },
 };
 
-export function ClassPageLayout({ name, role, description, color, stats, skills, tips }: ClassPageProps) {
+export function ClassPageLayout({ name, role, description, color, image, stats, skills, tips }: ClassPageProps) {
   const c = colorMap[color];
 
   return (
@@ -62,13 +65,22 @@ export function ClassPageLayout({ name, role, description, color, stats, skills,
       <main className="mx-auto max-w-5xl px-5 py-16 lg:px-8">
 
         {/* Header */}
-        <div className="mb-12">
-          <span className={`inline-block rounded-full border px-4 py-1 text-xs font-black tracking-[0.2em] ${c.badge}`}>
-            職業介紹
-          </span>
-          <h1 className="mt-4 text-5xl font-black text-white md:text-6xl">{name}</h1>
-          <p className={`mt-2 text-lg font-bold ${c.text}`}>{role}</p>
-          <p className="mt-4 max-w-2xl text-base leading-8 text-white/68">{description}</p>
+        <div className="mb-12 flex items-end gap-8">
+          <div className="flex-1">
+            <span className={`inline-block rounded-full border px-4 py-1 text-xs font-black tracking-[0.2em] ${c.badge}`}>
+              職業介紹
+            </span>
+            <h1 className="mt-4 text-5xl font-black text-white md:text-6xl">{name}</h1>
+            <p className={`mt-2 text-lg font-bold ${c.text}`}>{role}</p>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-white/68 whitespace-pre-line">{description}</p>
+          </div>
+          {image && (
+            <img
+              src={image}
+              alt={name}
+              className="hidden shrink-0 w-48 object-contain drop-shadow-[0_0_32px_rgba(217,45,69,.5)] lg:block"
+            />
+          )}
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
@@ -108,20 +120,35 @@ export function ClassPageLayout({ name, role, description, color, stats, skills,
             <p className={`mb-4 text-sm font-black tracking-[0.2em] ${c.text}`}>STATS</p>
             <h2 className="mb-5 text-2xl font-black text-white">職業能力值</h2>
             <div className="space-y-4">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <div className="mb-1.5 flex justify-between text-sm">
-                    <span className="font-bold text-white/80">{stat.label}</span>
-                    <span className={`font-black ${c.text}`}>{stat.value}</span>
+              {stats.map((stat) => {
+                const isGrade = typeof stat.value === "string";
+                const filled = isGrade ? gradeMap[stat.value as string] ?? 0 : 0;
+                return (
+                  <div key={stat.label}>
+                    <div className="mb-1.5 flex justify-between text-sm">
+                      <span className="font-bold text-white/80">{stat.label}</span>
+                      <span className={`font-black ${c.text}`}>{stat.value}</span>
+                    </div>
+                    {isGrade ? (
+                      <div className="flex gap-1">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <div
+                            key={i}
+                            className={`h-2 flex-1 rounded-sm ${i < filled ? c.bar : "bg-white/10"}`}
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                        <div
+                          className={`h-full rounded-full ${c.bar}`}
+                          style={{ width: `${stat.value}%` }}
+                        />
+                      </div>
+                    )}
                   </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                    <div
-                      className={`h-full rounded-full ${c.bar}`}
-                      style={{ width: `${stat.value}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </aside>
         </div>

@@ -6,13 +6,17 @@ export default function HeavyWarriorPage() {
       name="重裝戰士"
       role="前線坦克・近戰守護者"
       color="crimson"
-      description="身披重甲、以盾為刃，是隊伍中不可或缺的前線守護者。憑藉強大的防禦力與嘲諷技能，吸引敵方仇恨，保護隊友安全輸出。"
+      image="/images/warrior2.png"
+      description="重裝戰士是一個以近戰為主的高生存職業，擁有不錯的傷害能力，並以強大的生命值與防禦力著稱。適合正面迎擊敵人並吸收大量傷害。
+
+然而，由於缺乏遠程手段與魔法能力，機動性也相對較差，對於機動戰與控場需求較高的場合較為吃力。"
       stats={[
-        { label: "生命值", value: 95 },
-        { label: "攻擊力", value: 60 },
-        { label: "防禦力", value: 95 },
-        { label: "機動性", value: 35 },
-        { label: "團隊支援", value: 75 },
+        { label: "傷害", value: "B" },
+        { label: "射程", value: "C" },
+        { label: "機動", value: "C" },
+        { label: "控制", value: "C" },
+        { label: "魔法", value: "D" },
+        { label: "體質", value: "A" },
       ]}
       skills={[
         { name: "盾牆衝撞", description: "以盾牌衝向敵人，造成傷害並短暫擊退目標，同時嘲諷周圍敵人攻擊自身。" },
