@@ -18,8 +18,15 @@ export type GuideCard = {
   rating: string;
 };
 
+export type ServerIP = {
+  label: string;
+  ip: string;
+};
+
 export type QuickStartItem = {
   title: string;
   description: string;
   action: string;
+  ips?: ServerIP[];
+  href?: string;
 };

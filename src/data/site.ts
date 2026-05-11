@@ -1,4 +1,4 @@
-import type { FeatureCard, GuideCard, NavItem, QuickStartItem } from "@/types/site";
+import type { FeatureCard, GuideCard, NavItem, QuickStartItem, ServerIP } from "@/types/site";
 
 export const navItems: NavItem[] = [
   { label: "首頁", href: "/" },
@@ -68,11 +68,18 @@ export const guideCards: GuideCard[] = [
   },
 ];
 
+export const serverIPs: ServerIP[] = [
+  { label: "主要伺服器", ip: "mc.riftcall.net" },
+  { label: "RPG1 分流", ip: "rpg1.riftcall.net" },
+  { label: "RPG2 分流", ip: "rpg2.riftcall.net" },
+];
+
 export const quickStartItems: QuickStartItem[] = [
   {
     title: "遊戲連線",
     description: "加入伺服器開始冒險",
     action: "複製 IP",
+    ips: serverIPs,
   },
   {
     title: "新手教學",
@@ -87,6 +94,7 @@ export const quickStartItems: QuickStartItem[] = [
   {
     title: "玩家社群",
     description: "加入社群一起交流",
-    action: "加入社群",
+    action: "加入 Discord",
+    href: "https://discord.riftcall.net/",
   },
 ];

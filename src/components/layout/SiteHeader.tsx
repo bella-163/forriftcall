@@ -6,9 +6,11 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/55 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
         <Link href="/" className="group flex items-center gap-3">
-          <div className="grid h-11 w-11 place-items-center rounded-full border border-rift-violet/60 bg-rift-violet/15 shadow-glow transition group-hover:scale-105">
-            <span className="text-xl">✦</span>
-          </div>
+          <img
+            src="/images/logo2.png"
+            alt=""
+            className="h-11 w-11 object-contain transition group-hover:scale-105"
+          />
           <div>
             <p className="text-xl font-black tracking-[0.16em] text-white">斷界召喚</p>
             <p className="text-xs tracking-[0.22em] text-white/55">Minecraft RPG Server</p>
