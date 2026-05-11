@@ -43,9 +43,9 @@ const classes = [
     role: "單體爆發・隱匿刺殺者",
     description: "潛行於暗處、一擊致命，以極致爆發力終結目標。",
     href: "/classes/shadow-assassin",
-    color: "border-rift-violet/45 bg-rift-violet/10 hover:border-rift-violet/70",
-    badge: "bg-rift-violet/20 text-rift-violet",
-    arrow: "text-rift-violet",
+    color: "border-slate-500/45 bg-slate-500/10 hover:border-slate-400/70",
+    badge: "bg-slate-500/20 text-slate-300",
+    arrow: "text-slate-300",
   },
 ];
 

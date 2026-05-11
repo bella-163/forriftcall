@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 
 type Skill = {
@@ -11,10 +12,14 @@ type ClassPageProps = {
   name: string;
   role: string;
   description: string;
-  color: "crimson" | "gold" | "violet" | "blue" | "green";
+  color: "crimson" | "gold" | "violet" | "blue" | "green" | "gray";
+  href: string;
   image?: string;
   stats: { label: string; value: number | string }[];
-  skills: Skill[];
+  skills: {
+    pre: Skill[];
+    post: Skill[];
+  };
   tips: string[];
 };
 
@@ -54,9 +59,16 @@ const colorMap = {
     bar: "bg-emerald-400",
     badge: "border-emerald-500/45 bg-emerald-500/15 text-emerald-400",
   },
+  gray: {
+    border: "border-slate-500/40",
+    bg: "bg-slate-500/10",
+    text: "text-slate-300",
+    bar: "bg-slate-400",
+    badge: "border-slate-500/45 bg-slate-500/15 text-slate-300",
+  },
 };
 
-export function ClassPageLayout({ name, role, description, color, image, stats, skills, tips }: ClassPageProps) {
+export function ClassPageLayout({ name, role, description, color, href, image, stats, skills, tips }: ClassPageProps) {
   const c = colorMap[color];
 
   return (
@@ -87,17 +99,35 @@ export function ClassPageLayout({ name, role, description, color, image, stats, 
           <div className="space-y-6">
 
             {/* Skills */}
-            <section className={`rounded-2xl border ${c.border} bg-black/35 p-6 backdrop-blur`}>
-              <p className={`mb-4 text-sm font-black tracking-[0.2em] ${c.text}`}>SKILLS</p>
-              <h2 className="mb-5 text-2xl font-black text-white">技能介紹</h2>
-              <div className="space-y-4">
-                {skills.map((skill) => (
-                  <div key={skill.name} className="rounded-xl border border-white/8 bg-white/[0.03] p-4">
-                    <h3 className="font-black text-white">{skill.name}</h3>
-                    <p className="mt-1 text-sm leading-6 text-white/60">{skill.description}</p>
+            <section className="space-y-4">
+              <p className={`text-sm font-black tracking-[0.2em] ${c.text}`}>DETAIL</p>
+              <h2 className="text-2xl font-black text-white">詳細說明</h2>
+
+              {([
+                { phase: "pre", label: "1 - 80 等・二轉前", skillList: skills.pre },
+                { phase: "post", label: "80 - 180 等・二轉後", skillList: skills.post },
+              ] as const).map(({ phase, label, skillList }) => (
+                <Link
+                  key={phase}
+                  href={`${href}/${phase}`}
+                  className={`group block rounded-2xl border ${c.border} bg-black/35 p-6 backdrop-blur transition hover:-translate-y-1 hover:bg-black/50`}
+                >
+                  <span className={`inline-block rounded-full border px-5 py-2 text-sm font-black tracking-[0.15em] ${c.badge}`}>
+                    {label}
+                  </span>
+                  <ul className="mt-4 space-y-2">
+                    {skillList.map((skill) => (
+                      <li key={skill.name} className="flex items-start gap-2 text-sm text-white/60">
+                        <span className={`mt-0.5 shrink-0 font-black ${c.text}`}>▸</span>
+                        <span><span className="font-bold text-white/85">{skill.name}</span>　{skill.description}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className={`mt-5 flex items-center gap-1 text-sm font-bold ${c.text}`}>
+                    查看完整介紹 <span className="transition group-hover:translate-x-1">→</span>
                   </div>
-                ))}
-              </div>
+                </Link>
+              ))}
             </section>
 
             {/* Tips */}
