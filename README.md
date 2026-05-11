@@ -1,2 +1,27 @@
-# forriftcall
-made for riftcall's player
+# 斷界召喚｜Minecraft RPG 伺服器攻略站
+
+這是一個給「斷界召喚」玩家使用的伺服器攻略網站，主要收錄職業、裝備、怪物、功能指令、副本攻略與新手指南。
+
+## 預計網站區塊
+
+- 首頁主視覺
+- 職業介紹
+- 裝備介紹
+- 怪物介紹
+- 功能與指令
+- 副本攻略
+- 最新消息
+- 快速開始
+
+## 開發方式
+
+```bash
+npm install
+npm run dev
+```
+
+啟動後開啟：
+
+```text
+http://localhost:3000
+```
