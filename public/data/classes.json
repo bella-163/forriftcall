@@ -175,6 +175,16 @@
             "title": "",
             "image": "",
             "text": ""
+          },
+          {
+            "title": "test2",
+            "image": "",
+            "text": "",
+            "ref": {
+              "type": "equipment",
+              "parentSlug": "weapons",
+              "slug": "12345"
+            }
           }
         ]
       },
