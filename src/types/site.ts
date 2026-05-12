@@ -151,6 +151,7 @@ export type ItemData = {
   slug: string;
   name: string;
   category: string;
+  categories?: string[];
   description: string;
   image: string;
   color: "crimson" | "gold" | "violet" | "blue" | "green" | "gray";

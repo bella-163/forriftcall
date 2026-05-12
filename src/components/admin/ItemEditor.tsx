@@ -120,9 +120,13 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
       .then((r) => r.json())
       .then((data: SectionListData) => {
         const found = data.items.find((i) => i.slug === slug);
-        if (found) setItem(found);
+        if (found) {
+          setItem(showCatalogFields && (!found.categories || found.categories.length === 0) && found.category
+            ? { ...found, categories: [found.category] }
+            : found);
+        }
       });
-  }, [slug, isNew, dataKey]);
+  }, [slug, isNew, dataKey, showCatalogFields]);
 
   async function uploadImageTo(file: File, callback: (url: string) => void) {
     setUploading(true);
@@ -146,8 +150,11 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
   async function save() {
     setSaving(true);
     const data: SectionListData = await fetch(`/api/admin/data?key=${dataKey}`).then((r) => r.json());
+    const selectedCategories = (item.categories ?? []).filter(Boolean);
     const nextItem = {
       ...item,
+      category: showCatalogFields ? (selectedCategories[0] ?? item.category) : item.category,
+      categories: showCatalogFields ? selectedCategories : item.categories,
       attributes: (item.attributes ?? []).filter(Boolean),
       skills: (item.skills ?? []).filter((skill) => skill.name || skill.description),
       acquisition: (item.acquisition ?? []).filter((block) => block.ref || block.title || block.image || block.text),
@@ -453,14 +460,26 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
   }
 
   function addListCategory() {
-    const cat = prompt("請輸入新類別名稱");
+    const cat = prompt("請輸入新類別名稱")?.trim();
     if (!cat) return;
     setListCategories((cats) => cats.includes(cat) ? cats : [...cats, cat]);
   }
 
   function removeListCategory(cat: string) {
     setListCategories((cats) => cats.filter((c) => c !== cat));
-    setItem((i) => i.category === cat ? { ...i, category: "" } : i);
+    setItem((i) => ({
+      ...i,
+      category: i.category === cat ? "" : i.category,
+      categories: (i.categories ?? []).filter((c) => c !== cat),
+    }));
+  }
+
+  function toggleItemCategory(cat: string) {
+    setItem((i) => {
+      const current = i.categories && i.categories.length > 0 ? i.categories : i.category ? [i.category] : [];
+      const next = current.includes(cat) ? current.filter((c) => c !== cat) : [...current, cat];
+      return { ...i, category: next[0] ?? "", categories: next };
+    });
   }
 
   function addAttribute() {
@@ -603,23 +622,89 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
               <Input label="名稱" value={item.name} onChange={(v) => setField("name", v)} />
               <div className="col-span-2">
                 <label className="mb-1.5 block text-xs font-bold text-white/50">分類</label>
-                <div className="flex gap-2">
-                  <select value={item.category} onChange={(e) => setField("category", e.target.value)}
-                    className="flex-1 rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-sm text-white outline-none">
-                    <option value="">未分類</option>
-                    {listCategories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
-                  </select>
-                  <button onClick={addListCategory} className="rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs font-bold text-white hover:bg-white/10">+ 類別</button>
-                </div>
-                {listCategories.length > 0 && (
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {listCategories.map((cat) => (
-                      <span key={cat} className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs font-bold text-white/60">
-                        {cat}
-                        <button onClick={() => removeListCategory(cat)} className="text-red-400 hover:text-red-300">✕</button>
-                      </span>
-                    ))}
+                {showCatalogFields ? (
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <div className="mb-3 flex flex-wrap gap-2">
+                      {listCategories.length === 0 && <span className="text-xs text-white/25">尚無類別</span>}
+                      {listCategories.map((cat) => (
+                        <span key={cat} className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/8 pl-3 pr-2 py-1 text-xs font-bold text-white/80">
+                          {cat}
+                          <button onClick={() => removeListCategory(cat)} className="flex h-4 w-4 items-center justify-center rounded-full text-white/40 transition hover:bg-red-500/30 hover:text-red-300">✕</button>
+                        </span>
+                      ))}
+                    </div>
+                    <div className="mb-4 flex gap-2">
+                      <input
+                        value={newCatInput}
+                        onChange={(e) => setNewCatInput(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key !== "Enter") return;
+                          const cat = newCatInput.trim();
+                          if (!cat) return;
+                          setListCategories((cats) => cats.includes(cat) ? cats : [...cats, cat]);
+                          setNewCatInput("");
+                        }}
+                        placeholder="輸入新類別名稱，如：強化素材"
+                        className="flex-1 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm text-white placeholder-white/25 outline-none focus:border-rift-crimson/60"
+                      />
+                      <button
+                        onClick={() => {
+                          const cat = newCatInput.trim();
+                          if (!cat) return;
+                          setListCategories((cats) => cats.includes(cat) ? cats : [...cats, cat]);
+                          setNewCatInput("");
+                        }}
+                        disabled={!newCatInput.trim()}
+                        className="rounded-xl border border-white/15 bg-white/8 px-4 py-2 text-sm font-bold text-white transition hover:bg-white/15 disabled:opacity-30"
+                      >
+                        新增
+                      </button>
+                    </div>
+                    {listCategories.length > 0 && (
+                      <div>
+                        <p className="mb-2 text-xs font-bold text-white/50">此素材所屬類別</p>
+                        <div className="flex flex-wrap gap-2">
+                          {listCategories.map((cat) => {
+                            const selected = (item.categories && item.categories.length > 0 ? item.categories : item.category ? [item.category] : []).includes(cat);
+                            return (
+                              <button
+                                key={cat}
+                                onClick={() => toggleItemCategory(cat)}
+                                className={`rounded-full border px-4 py-1.5 text-xs font-bold transition ${
+                                  selected
+                                    ? "border-white/60 bg-white/20 text-white"
+                                    : "border-white/15 bg-white/5 text-white/50 hover:border-white/30 hover:text-white"
+                                }`}
+                              >
+                                {cat}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
                   </div>
+                ) : (
+                  <>
+                    <div className="flex gap-2">
+                      <select value={item.category} onChange={(e) => setField("category", e.target.value)}
+                        className="flex-1 rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-sm text-white outline-none">
+                        <option value="">未分類</option>
+                        {listCategories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
+                      </select>
+                      <button onClick={addListCategory} className="rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs font-bold text-white hover:bg-white/10">+ 類別</button>
+                    </div>
+                    {listCategories.length > 0 && (
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {listCategories.map((cat) => (
+                          <span key={cat} className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs font-bold text-white/60">
+                            {cat}
+                            <button onClick={() => removeListCategory(cat)} className="text-red-400 hover:text-red-300">✕</button>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>
