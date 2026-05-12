@@ -147,7 +147,13 @@
             "text": "推薦指數：⭐⭐⭐⭐⭐\n需求等級：120\n戰士二轉的大昭\n短暫延遲後會召喚一隻老虎向前撲擊，隨後爆炸\n是純粹的大傷害技能\n如果處於「炎神」狀態，傷害會非常恐怖"
           }
         ],
-        "推薦裝備": [],
+        "推薦裝備": [
+          {
+            "title": "wb1套",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778591913793.png",
+            "text": "二轉前戰士皆以穿著 wb1 套為佳"
+          }
+        ],
         "推薦配件": []
       }
     }
