@@ -3,6 +3,8 @@ import { ItemDetailLayout } from "@/components/sections/ItemDetailLayout";
 import { readData } from "@/lib/data";
 import type { SectionListData } from "@/types/site";
 
+export const dynamic = "force-dynamic";
+
 export default async function EquipmentDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const data = readData<SectionListData>("equipment");

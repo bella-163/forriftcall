@@ -11,10 +11,15 @@
       "image": "",
       "color": "crimson",
       "sections": {},
+      "pieceCategories": [
+        "測試",
+        "123"
+      ],
       "pieces": [
         {
           "image": "",
-          "name": "",
+          "name": "12345",
+          "category": "",
           "effects": [],
           "rating": ""
         }
@@ -28,7 +33,18 @@
       "image": "",
       "color": "blue",
       "sections": {},
-      "pieces": []
+      "pieceCategories": [
+        "123"
+      ],
+      "pieces": [
+        {
+          "image": "",
+          "name": "123456",
+          "category": "",
+          "effects": [],
+          "rating": ""
+        }
+      ]
     },
     {
       "slug": "accessories",
@@ -38,6 +54,7 @@
       "image": "",
       "color": "gold",
       "sections": {},
+      "pieceCategories": [],
       "pieces": []
     },
     {
@@ -48,6 +65,7 @@
       "image": "",
       "color": "violet",
       "sections": {},
+      "pieceCategories": [],
       "pieces": []
     },
     {
@@ -58,6 +76,7 @@
       "image": "",
       "color": "green",
       "sections": {},
+      "pieceCategories": [],
       "pieces": []
     },
     {
@@ -68,6 +87,7 @@
       "image": "",
       "color": "gray",
       "sections": {},
+      "pieceCategories": [],
       "pieces": []
     }
   ]

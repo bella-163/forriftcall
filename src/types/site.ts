@@ -88,6 +88,7 @@ export type PageData = {
 export type EquipmentPiece = {
   image: string;
   name: string;
+  category: string;
   effects: string[];
   rating: string;
 };
@@ -101,6 +102,7 @@ export type ItemData = {
   color: "crimson" | "gold" | "violet" | "blue" | "green" | "gray";
   sections: Record<string, PhaseBlock[]>;
   pieces?: EquipmentPiece[];
+  pieceCategories?: string[];
 };
 
 export type SectionListData = {

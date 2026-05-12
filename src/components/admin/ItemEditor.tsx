@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { ItemData, SectionListData, PhaseBlock, EquipmentPiece } from "@/types/site";
@@ -17,21 +17,23 @@ const EMPTY_ITEM: ItemData = {
   sections: {},
 };
 
-function Input({ label, value, onChange, multiline }: { label: string; value: string; onChange: (v: string) => void; multiline?: boolean }) {
+const EMPTY_PIECE: EquipmentPiece = { image: "", name: "", category: "", effects: [], rating: "" };
+
+function Input({ label, value, onChange, multiline, placeholder }: {
+  label: string; value: string; onChange: (v: string) => void; multiline?: boolean; placeholder?: string;
+}) {
   const cls = "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:border-rift-crimson/60";
   return (
     <div>
       <label className="mb-1.5 block text-xs font-bold text-white/50">{label}</label>
       {multiline ? (
-        <textarea rows={4} value={value} onChange={(e) => onChange(e.target.value)} className={cls + " resize-none"} />
+        <textarea rows={4} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} className={cls + " resize-none"} />
       ) : (
-        <input value={value} onChange={(e) => onChange(e.target.value)} className={cls} />
+        <input value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} className={cls} />
       )}
     </div>
   );
 }
-
-const EMPTY_PIECE: EquipmentPiece = { image: "", name: "", effects: [], rating: "" };
 
 type Props = {
   dataKey: string;
@@ -49,6 +51,8 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [newCatInput, setNewCatInput] = useState("");
+  const newCatRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isNew) return;
@@ -91,6 +95,7 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
     setItem((i) => ({ ...i, [key]: value }));
   }
 
+  // Sections
   function addSection() {
     const key = prompt("請輸入區塊名稱");
     if (!key) return;
@@ -113,6 +118,25 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
     });
   }
 
+  // Piece categories (master list)
+  function addCategory() {
+    const cat = newCatInput.trim();
+    if (!cat) return;
+    const current = item.pieceCategories ?? [];
+    if (current.includes(cat)) return;
+    setItem((i) => ({ ...i, pieceCategories: [...current, cat] }));
+    setNewCatInput("");
+    newCatRef.current?.focus();
+  }
+  function removeCategory(cat: string) {
+    setItem((i) => ({
+      ...i,
+      pieceCategories: (i.pieceCategories ?? []).filter((c) => c !== cat),
+      pieces: (i.pieces ?? []).map((p) => p.category === cat ? { ...p, category: "" } : p),
+    }));
+  }
+
+  // Pieces
   function addPiece() {
     setItem((i) => ({ ...i, pieces: [...(i.pieces ?? []), { ...EMPTY_PIECE }] }));
   }
@@ -149,6 +173,8 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
       return { ...i, pieces };
     });
   }
+
+  const pieceCategories = item.pieceCategories ?? [];
 
   const SaveBtn = () => (
     <button onClick={save} disabled={saving} className="rounded-xl bg-rift-crimson px-6 py-2.5 font-black text-white transition hover:bg-rift-crimson/85 disabled:opacity-50">
@@ -260,16 +286,64 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
         {/* Equipment Pieces */}
         {showPieces && (
           <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <div className="mb-5 flex items-center justify-between">
-              <h2 className="text-xl font-black text-white">裝備物品</h2>
+            <h2 className="mb-6 text-xl font-black text-white">裝備物品</h2>
+
+            {/* Category manager */}
+            <div className="mb-6 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              <p className="mb-3 text-xs font-black tracking-widest text-white/40">類別管理</p>
+
+              {/* Existing categories */}
+              <div className="mb-3 flex flex-wrap gap-2 min-h-[28px]">
+                {pieceCategories.length === 0 && (
+                  <span className="text-xs text-white/25">尚無類別</span>
+                )}
+                {pieceCategories.map((cat) => (
+                  <span key={cat} className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/8 pl-3 pr-2 py-1 text-xs font-bold text-white/80">
+                    {cat}
+                    <button
+                      onClick={() => removeCategory(cat)}
+                      className="flex h-4 w-4 items-center justify-center rounded-full text-white/40 hover:bg-red-500/30 hover:text-red-300 transition"
+                      title="刪除類別"
+                    >
+                      ✕
+                    </button>
+                  </span>
+                ))}
+              </div>
+
+              {/* Add new category */}
+              <div className="flex gap-2">
+                <input
+                  ref={newCatRef}
+                  value={newCatInput}
+                  onChange={(e) => setNewCatInput(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && addCategory()}
+                  placeholder="輸入新類別名稱，如：世界王武器"
+                  className="flex-1 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm text-white placeholder-white/25 outline-none focus:border-rift-crimson/60"
+                />
+                <button
+                  onClick={addCategory}
+                  disabled={!newCatInput.trim()}
+                  className="rounded-xl border border-white/15 bg-white/8 px-4 py-2 text-sm font-bold text-white hover:bg-white/15 disabled:opacity-30 transition"
+                >
+                  新增
+                </button>
+              </div>
+            </div>
+
+            {/* Piece list */}
+            <div className="mb-4 flex items-center justify-between">
+              <p className="text-sm font-bold text-white/50">物品列表（{(item.pieces ?? []).length} 個）</p>
               <button onClick={addPiece} className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-bold text-white hover:bg-white/10">+ 新增物品</button>
             </div>
+
             <div className="space-y-6">
               {(item.pieces ?? []).length === 0 && (
                 <p className="text-sm text-white/35">尚無物品，點上方按鈕新增。</p>
               )}
               {(item.pieces ?? []).map((piece, pi) => (
                 <div key={pi} className="rounded-xl border border-white/10 p-5 space-y-4">
+                  {/* Piece header */}
                   <div className="flex items-center justify-between">
                     <span className="font-black text-white">{piece.name || `物品 ${pi + 1}`}</span>
                     <button onClick={() => removePiece(pi)} className="text-xs text-red-400 hover:text-red-300">刪除物品</button>
@@ -292,6 +366,30 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
 
                   {/* Name */}
                   <Input label="物品名稱" value={piece.name} onChange={(v) => updatePiece(pi, "name", v)} />
+
+                  {/* Category selector */}
+                  <div>
+                    <label className="mb-2 block text-xs font-bold text-white/50">類別</label>
+                    {pieceCategories.length === 0 ? (
+                      <p className="text-xs text-white/30">請先在上方「類別管理」新增類別</p>
+                    ) : (
+                      <div className="flex flex-wrap gap-2">
+                        {pieceCategories.map((cat) => (
+                          <button
+                            key={cat}
+                            onClick={() => updatePiece(pi, "category", piece.category === cat ? "" : cat)}
+                            className={`rounded-full px-4 py-1.5 text-xs font-bold border transition ${
+                              piece.category === cat
+                                ? "border-white/60 bg-white/20 text-white"
+                                : "border-white/15 bg-white/5 text-white/50 hover:text-white hover:border-white/30"
+                            }`}
+                          >
+                            {cat}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
 
                   {/* Effects */}
                   <div>
