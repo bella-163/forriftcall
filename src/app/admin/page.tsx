@@ -7,7 +7,7 @@ const SECTIONS = [
   { href: "/admin/home", label: "首頁內容", desc: "Hero 標語、功能卡片、攻略推薦、伺服器 IP" },
   { href: "/admin/classes", label: "職業列表", desc: "管理所有職業的資料與排序" },
   { href: "/admin/pages/commands", label: "功能與指令", desc: "指令清單內容" },
-  { href: "/admin/pages/news", label: "最新消息", desc: "消息分類清單" },
+  { href: "/admin/news", label: "最新消息", desc: "各分類消息列表，可新增、編輯、刪除消息" },
   { href: "/admin/equipment", label: "裝備介紹", desc: "裝備項目清單，可點進去編輯內容" },
   { href: "/admin/monsters", label: "怪物介紹", desc: "怪物項目清單，可點進去編輯內容" },
   { href: "/admin/dungeons", label: "副本攻略", desc: "副本項目清單，可點進去編輯內容" },

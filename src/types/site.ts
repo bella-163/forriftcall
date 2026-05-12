@@ -85,6 +85,29 @@ export type PageData = {
   items: string[];
 };
 
+export type NewsPost = {
+  id: string;
+  date: string;
+  title: string;
+  content: string;
+  image: string;
+  dcLink: string;
+};
+
+export type NewsCategoryData = {
+  slug: string;
+  name: string;
+  color: "crimson" | "gold" | "violet" | "blue" | "green" | "gray";
+  posts: NewsPost[];
+};
+
+export type NewsPageData = {
+  title: string;
+  description: string;
+  eyebrow: string;
+  categories: NewsCategoryData[];
+};
+
 export type EquipmentPiece = {
   image: string;
   name: string;

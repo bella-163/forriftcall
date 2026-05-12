@@ -1,12 +1,52 @@
 {
   "title": "最新消息",
   "description": "整理伺服器更新公告、活動資訊、維護通知與版本調整紀錄。",
-  "items": [
-    "更新公告",
-    "活動資訊",
-    "維護通知",
-    "版本調整",
-    "公會活動",
-    "限時任務"
+  "eyebrow": "斷界召喚資料庫",
+  "categories": [
+    {
+      "slug": "updates",
+      "name": "更新公告",
+      "color": "crimson",
+      "posts": [
+        {
+          "id": "1778575998723",
+          "date": "2026-05-12",
+          "title": "test",
+          "content": "test",
+          "image": "",
+          "dcLink": ""
+        }
+      ]
+    },
+    {
+      "slug": "events",
+      "name": "活動資訊",
+      "color": "gold",
+      "posts": []
+    },
+    {
+      "slug": "maintenance",
+      "name": "維護通知",
+      "color": "blue",
+      "posts": []
+    },
+    {
+      "slug": "patches",
+      "name": "版本調整",
+      "color": "violet",
+      "posts": []
+    },
+    {
+      "slug": "guild",
+      "name": "公會活動",
+      "color": "green",
+      "posts": []
+    },
+    {
+      "slug": "limited",
+      "name": "限時任務",
+      "color": "gray",
+      "posts": []
+    }
   ]
 }
