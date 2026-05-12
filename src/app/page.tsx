@@ -9,7 +9,7 @@ import type { HomeData } from "@/types/site";
 export default function HomePage() {
   const home = readData<HomeData>("home");
   return (
-    <>
+    <div className="home-bg min-h-screen">
       <SiteHeader />
       <HeroSection hero={home.hero} />
       <FeatureCards cards={home.featureCards} />
@@ -18,6 +18,6 @@ export default function HomePage() {
         <GuideSection cards={home.guideCards} />
         <QuickStartSection items={home.quickStart} />
       </main>
-    </>
+    </div>
   );
 }

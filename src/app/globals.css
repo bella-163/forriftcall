@@ -19,19 +19,24 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  background: #1a1625;
+  color: #f8f3ea;
+}
+
+.home-bg {
   background:
     radial-gradient(circle at 20% 0%, rgba(217, 45, 69, 0.22), transparent 32%),
     radial-gradient(circle at 80% 12%, rgba(139, 92, 246, 0.2), transparent 34%),
     linear-gradient(180deg, rgba(8, 6, 12, 0.70) 0%, rgba(18, 11, 21, 0.70) 48%, rgba(7, 6, 10, 0.70) 100%),
     url('/images/background.png') center / cover fixed;
-  color: #f8f3ea;
 }
 
-body::before {
+.home-bg::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
