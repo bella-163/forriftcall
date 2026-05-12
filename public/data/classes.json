@@ -113,8 +113,18 @@
         "技能介紹": [
           {
             "title": "烈火意志 - 被動",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585939891.png",
+            "text": "推薦指數：⭐⭐⭐⭐⭐\n戰士二轉的被動\n是戰士所有輸出來源的核心\n提供大量物理傷害%加成\n總共有十層，"
+          },
+          {
+            "title": "烈火滅魂斬 - 普攻",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778586043593.png",
+            "text": "推薦指數：⭐⭐⭐⭐⭐\n戰士二轉的普攻\n與二轉之前相比，差異非常大\n但這跟它本身傷害無關\n它的主要作用是維持二轉被動「炎神」的疊層\n因此一定要帶它"
+          },
+          {
+            "title": "",
             "image": "",
-            "text": "推薦指數：\n戰士二轉的被動\n\n是戰士所有輸出來源的核心\n提供大量物理傷害%加成\n總共有十層，"
+            "text": ""
           }
         ],
         "推薦裝備": [],
