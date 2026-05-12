@@ -106,7 +106,18 @@
             "text": "推薦指數：⭐⭐⭐⭐⭐\n需求等級：35\n戰士的大招\n是二轉前主要的輸出技能之一\n動畫雖然很拖時間，但只要全部命中，效果也非常好"
           }
         ],
-        "推薦裝備": [],
+        "推薦裝備": [
+          {
+            "title": "wb1套",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778591913793.png",
+            "text": "二轉前戰士皆以穿著 wb1 套為佳"
+          },
+          {
+            "title": "破鋒手套（主線手套） 或 wb1手套",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778592129911.png",
+            "text": ""
+          }
+        ],
         "推薦配件": []
       },
       "post": {
@@ -149,13 +160,13 @@
         ],
         "推薦裝備": [
           {
-            "title": "wb1套",
-            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778591913793.png",
-            "text": "二轉前戰士皆以穿著 wb1 套為佳"
+            "title": "",
+            "image": "",
+            "text": ""
           },
           {
-            "title": "破鋒手套（主線手套） 或 wb1手套",
-            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778592129911.png",
+            "title": "",
+            "image": "",
             "text": ""
           }
         ],
