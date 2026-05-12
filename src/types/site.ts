@@ -56,6 +56,7 @@ export type ClassStat = {
 };
 
 export type PhaseBlock = {
+  title?: string;
   image: string;
   text: string;
 };

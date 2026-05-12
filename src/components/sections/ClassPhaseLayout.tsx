@@ -5,7 +5,7 @@ import type { PhaseBlock } from "@/types/site";
 type ClassPhaseLayoutProps = {
   className: string;
   phase: "pre" | "post";
-  color: "crimson" | "gold" | "violet" | "blue" | "gray";
+  color: "crimson" | "gold" | "violet" | "blue" | "green" | "gray";
   classHref: string;
   sections?: Record<string, PhaseBlock[]>;
 };
@@ -34,6 +34,12 @@ const colorMap = {
     bg: "bg-rift-blue/10",
     text: "text-rift-blue",
     badge: "border-rift-blue/45 bg-rift-blue/15 text-rift-blue",
+  },
+  green: {
+    border: "border-emerald-500/40",
+    bg: "bg-emerald-500/10",
+    text: "text-emerald-400",
+    badge: "border-emerald-500/45 bg-emerald-500/15 text-emerald-400",
   },
   gray: {
     border: "border-slate-500/40",
@@ -99,7 +105,10 @@ export function ClassPhaseLayout({ className, phase, color, classHref, sections 
                             className="h-16 w-16 flex-shrink-0 rounded-lg object-contain"
                           />
                         )}
-                        <p className="text-sm leading-7 text-white/68 whitespace-pre-line">{block.text}</p>
+                        <div className="min-w-0">
+                          {block.title && <h3 className="mb-1 text-base font-black text-white">{block.title}</h3>}
+                          <p className="text-sm leading-7 text-white/68 whitespace-pre-line">{block.text}</p>
+                        </div>
                       </div>
                     ))}
                   </div>

@@ -66,7 +66,9 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
           (["pre", "post"] as const).forEach((phase) => {
             const p: Record<string, PhaseBlock[]> = {};
             Object.entries(found.phases[phase]).forEach(([k, v]) => {
-              p[k] = Array.isArray(v) ? v : (v ? [{ image: "", text: v as unknown as string }] : []);
+              p[k] = Array.isArray(v)
+                ? v.map((block) => ({ title: block.title ?? "", image: block.image ?? "", text: block.text ?? "" }))
+                : (v ? [{ title: "", image: "", text: v as unknown as string }] : []);
             });
             migrated.phases = { ...migrated.phases, [phase]: p };
           });
@@ -155,7 +157,7 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
   }
   function addBlock(phase: "pre" | "post", sectionKey: string) {
     setCls((c) => {
-      const blocks = [...(c.phases[phase][sectionKey] ?? []), { image: "", text: "" }];
+      const blocks = [...(c.phases[phase][sectionKey] ?? []), { title: "", image: "", text: "" }];
       return { ...c, phases: { ...c.phases, [phase]: { ...c.phases[phase], [sectionKey]: blocks } } };
     });
   }
@@ -330,6 +332,11 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
                           <button onClick={() => removeBlock(phase, sectionKey, i)} className="text-xs text-red-400 hover:text-red-300">刪除</button>
                         </div>
                         <div className="space-y-3">
+                          <Input
+                            label="小方塊標題"
+                            value={block.title ?? ""}
+                            onChange={(v) => updateBlock(phase, sectionKey, i, "title", v)}
+                          />
                           {/* Image row */}
                           <div className="flex items-center gap-3">
                             {block.image && (

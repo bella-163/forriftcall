@@ -105,7 +105,7 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
     setItem((i) => { const s = { ...i.sections }; delete s[key]; return { ...i, sections: s }; });
   }
   function addBlock(sectionKey: string) {
-    setItem((i) => ({ ...i, sections: { ...i.sections, [sectionKey]: [...(i.sections[sectionKey] ?? []), { image: "", text: "" }] } }));
+    setItem((i) => ({ ...i, sections: { ...i.sections, [sectionKey]: [...(i.sections[sectionKey] ?? []), { title: "", image: "", text: "" }] } }));
   }
   function removeBlock(sectionKey: string, idx: number) {
     setItem((i) => ({ ...i, sections: { ...i.sections, [sectionKey]: i.sections[sectionKey].filter((_, j) => j !== idx) } }));
@@ -256,6 +256,7 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
                         <button onClick={() => removeBlock(sectionKey, i)} className="text-xs text-red-400 hover:text-red-300">刪除</button>
                       </div>
                       <div className="space-y-3">
+                        <Input label="小方塊標題" value={block.title ?? ""} onChange={(v) => updateBlock(sectionKey, i, "title", v)} />
                         <div className="flex items-center gap-3">
                           {block.image && <img src={block.image} alt="" className="h-12 w-12 flex-shrink-0 rounded-lg object-contain border border-white/10" />}
                           <div className="flex flex-1 gap-2">

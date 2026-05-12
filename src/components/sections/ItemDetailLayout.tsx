@@ -113,7 +113,10 @@ export function ItemDetailLayout({ item, listHref, listLabel }: ItemDetailLayout
                         {block.image && (
                           <img src={block.image} alt="" className="h-16 w-16 flex-shrink-0 rounded-lg object-contain" />
                         )}
-                        <p className="text-sm leading-7 text-white/68 whitespace-pre-line">{block.text}</p>
+                        <div className="min-w-0">
+                          {block.title && <h3 className="mb-1 text-base font-black text-white">{block.title}</h3>}
+                          <p className="text-sm leading-7 text-white/68 whitespace-pre-line">{block.text}</p>
+                        </div>
                       </div>
                     ))}
                   </div>
