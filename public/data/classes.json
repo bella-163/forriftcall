@@ -45,11 +45,11 @@
       ],
       "post": [
         {
-          "name": "",
-          "description": "重擊地面造成範圍傷害，並對命中敵人施加減速效果。"
+          "name": "烈火意志",
+          "description": ""
         },
         {
-          "name": "守護光環",
+          "name": "烈火滅魂斬",
           "description": ""
         }
       ]
