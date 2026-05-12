@@ -66,12 +66,21 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
 
   async function uploadImageTo(file: File, callback: (url: string) => void) {
     setUploading(true);
-    const form = new FormData();
-    form.append("file", file);
-    const res = await fetch("/api/admin/upload", { method: "POST", body: form });
-    const { url } = await res.json();
-    callback(url);
-    setUploading(false);
+    try {
+      const form = new FormData();
+      form.append("file", file);
+      const res = await fetch("/api/admin/upload", { method: "POST", body: form });
+      const data = await res.json();
+      if (!res.ok) {
+        alert("上傳失敗：" + (data.error ?? res.status));
+        return;
+      }
+      callback(data.url);
+    } catch {
+      alert("上傳失敗：網路錯誤，請再試一次");
+    } finally {
+      setUploading(false);
+    }
   }
 
   async function save() {

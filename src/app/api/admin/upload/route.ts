@@ -25,7 +25,11 @@ export async function POST(req: NextRequest) {
   const destPath = path.join(process.cwd(), "public", "images", safeName);
 
   const buffer = Buffer.from(await file.arrayBuffer());
-  fs.writeFileSync(destPath, buffer);
+  try {
+    fs.writeFileSync(destPath, buffer);
+  } catch {
+    return NextResponse.json({ error: "寫入檔案失敗，請確認 public/images 目錄存在" }, { status: 500 });
+  }
 
   return NextResponse.json({ url: `/images/${safeName}` });
 }
