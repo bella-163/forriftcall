@@ -29,6 +29,29 @@
       "skills": [],
       "crafting": [],
       "pieces": []
+    },
+    {
+      "slug": "Seal_of_Destiny",
+      "name": "命運印章",
+      "category": "貨幣",
+      "description": "用於高階裝備製作與進階強化",
+      "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778606138567.png",
+      "color": "crimson",
+      "sections": {},
+      "categories": [
+        "貨幣"
+      ],
+      "acquisition": [
+        {
+          "title": "打任何怪皆有較小的機率掉落",
+          "image": "",
+          "text": ""
+        }
+      ],
+      "attributes": [],
+      "skills": [],
+      "crafting": [],
+      "pieces": []
     }
   ]
 }
