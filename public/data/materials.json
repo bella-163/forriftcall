@@ -4,8 +4,7 @@
   "eyebrow": "斷界召喚資料庫",
   "categories": [
     "素材",
-    "貨幣",
-    "強化素材"
+    "貨幣"
   ],
   "items": [
     {
@@ -37,7 +36,7 @@
       "category": "貨幣",
       "description": "用於高階裝備製作與進階強化",
       "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778606138567.png",
-      "color": "crimson",
+      "color": "gold",
       "sections": {},
       "categories": [
         "貨幣"
@@ -51,23 +50,6 @@
       ],
       "attributes": [],
       "skills": [],
-      "crafting": [],
-      "pieces": []
-    },
-    {
-      "slug": "Reinforcement_stone_1",
-      "name": "初級強化石",
-      "category": "強化素材",
-      "description": "用於強化裝備屬性\n成功率：50%",
-      "image": "",
-      "color": "green",
-      "sections": {},
-      "categories": [
-        "強化素材"
-      ],
-      "attributes": [],
-      "skills": [],
-      "acquisition": [],
       "crafting": [],
       "pieces": []
     }
