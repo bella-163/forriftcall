@@ -4,6 +4,7 @@ export const navItems: NavItem[] = [
   { label: "首頁", href: "/" },
   { label: "職業介紹", href: "/classes" },
   { label: "裝備介紹", href: "/equipment" },
+  { label: "素材介紹", href: "/materials" },
   { label: "怪物介紹", href: "/monsters" },
   { label: "功能與指令", href: "/commands" },
   { label: "副本攻略", href: "/dungeons" },

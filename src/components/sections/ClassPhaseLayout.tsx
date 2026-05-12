@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import type { PhaseBlock } from "@/types/site";
+import { CatalogRefCard } from "@/components/sections/CatalogRefCard";
+import { readData } from "@/lib/data";
+import type { PhaseBlock, SectionListData } from "@/types/site";
 
 type ClassPhaseLayoutProps = {
   className: string;
@@ -57,6 +59,10 @@ const phaseLabel = {
 export function ClassPhaseLayout({ className, phase, color, classHref, sections }: ClassPhaseLayoutProps) {
   const c = colorMap[color];
   const sectionEntries = sections ? Object.entries(sections) : [];
+  const catalogs = {
+    equipment: readData<SectionListData>("equipment"),
+    materials: readData<SectionListData>("materials"),
+  };
 
   return (
     <>
@@ -86,34 +92,60 @@ export function ClassPhaseLayout({ className, phase, color, classHref, sections 
             <p className="text-sm text-white/35">內容建置中...</p>
           ) : (
             sectionEntries.map(([sectionName, blocks]) => (
-              <section key={sectionName} className={`rounded-2xl border ${c.border} bg-black/35 p-6 backdrop-blur`}>
-                <p className={`mb-2 text-sm font-black tracking-[0.2em] ${c.text}`}>
-                  {sectionName.toUpperCase()}
-                </p>
-                <h2 className="mb-6 text-2xl font-black text-white">{sectionName}</h2>
+              <details key={sectionName} open className={`group rounded-2xl border ${c.border} bg-black/35 p-6 backdrop-blur`}>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                  <div>
+                    <p className={`mb-2 text-sm font-black tracking-[0.2em] ${c.text}`}>
+                      {sectionName.toUpperCase()}
+                    </p>
+                    <h2 className="text-2xl font-black text-white">{sectionName}</h2>
+                  </div>
+                  <span className={`shrink-0 rounded-lg border px-3 py-1.5 text-xs font-black ${c.badge}`}>
+                    <span className="group-open:hidden">展開</span>
+                    <span className="hidden group-open:inline">收合</span>
+                  </span>
+                </summary>
 
                 {blocks.length === 0 ? (
-                  <p className="text-sm text-white/35">內容建置中...</p>
+                  <p className="mt-6 text-sm text-white/35">內容建置中...</p>
                 ) : (
-                  <div className="space-y-4">
+                  <div className="mt-6 space-y-3">
                     {blocks.map((block, i) => (
-                      <div key={i} className="flex gap-4 rounded-xl border border-white/8 bg-white/[0.03] p-4">
-                        {block.image && (
-                          <img
-                            src={block.image}
-                            alt=""
-                            className="h-16 w-16 flex-shrink-0 rounded-lg object-contain"
-                          />
-                        )}
-                        <div className="min-w-0">
-                          {block.title && <h3 className="mb-1 text-base font-black text-white">{block.title}</h3>}
-                          <p className="text-sm leading-7 text-white/68 whitespace-pre-line">{block.text}</p>
-                        </div>
-                      </div>
+                      block.ref ? (
+                        <details key={i} className="group/block rounded-xl border border-white/8 bg-white/[0.03] p-4">
+                          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 [&::-webkit-details-marker]:hidden">
+                            <CatalogRefCard refData={block.ref} catalogs={catalogs} />
+                            <span className="shrink-0 text-xs font-black text-white/35 group-open/block:hidden">展開</span>
+                            <span className="hidden shrink-0 text-xs font-black text-white/35 group-open/block:inline">收合</span>
+                          </summary>
+                          {block.text && <p className="mt-3 text-sm leading-7 text-white/68 whitespace-pre-line">{block.text}</p>}
+                        </details>
+                      ) : (
+                        <details key={i} className="group/block rounded-xl border border-white/8 bg-white/[0.03] p-4">
+                          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                            <div className="flex min-w-0 items-center gap-4">
+                              {block.image && (
+                                <img
+                                  src={block.image}
+                                  alt=""
+                                  className="h-14 w-14 flex-shrink-0 rounded-lg object-contain"
+                                />
+                              )}
+                              <div className="min-w-0">
+                                <h3 className="truncate text-base font-black text-white">{block.title || `項目 ${i + 1}`}</h3>
+                                {block.text && <p className="mt-1 truncate text-xs text-white/38">{block.text.split("\n").find(Boolean)}</p>}
+                              </div>
+                            </div>
+                            <span className="shrink-0 text-xs font-black text-white/35 group-open/block:hidden">展開</span>
+                            <span className="hidden shrink-0 text-xs font-black text-white/35 group-open/block:inline">收合</span>
+                          </summary>
+                          {block.text && <p className="mt-4 text-sm leading-7 text-white/68 whitespace-pre-line">{block.text}</p>}
+                        </details>
+                      )
                     ))}
                   </div>
                 )}
-              </section>
+              </details>
             ))
           )}
         </div>

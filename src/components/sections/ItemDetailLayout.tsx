@@ -1,12 +1,17 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { CatalogRefCard } from "@/components/sections/CatalogRefCard";
 import { PiecesSection } from "@/components/sections/PiecesSection";
-import type { ItemData } from "@/types/site";
+import type { ItemData, PhaseBlock } from "@/types/site";
+import type { CatalogMaps } from "@/lib/catalog";
+import { readData } from "@/lib/data";
+import type { SectionListData } from "@/types/site";
 
 type ItemDetailLayoutProps = {
   item: ItemData;
   listHref: string;
   listLabel: string;
+  catalogs?: CatalogMaps;
 };
 
 const colorMap = {
@@ -48,10 +53,41 @@ const colorMap = {
   },
 };
 
-export function ItemDetailLayout({ item, listHref, listLabel }: ItemDetailLayoutProps) {
+function DetailBlock({ block, catalogs }: { block: PhaseBlock; catalogs: CatalogMaps }) {
+  if (block.ref) {
+    return (
+      <div className="rounded-xl border border-white/8 bg-white/[0.03] p-4">
+        <CatalogRefCard refData={block.ref} catalogs={catalogs} />
+        {block.text && <p className="mt-3 text-sm leading-7 text-white/68 whitespace-pre-line">{block.text}</p>}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex gap-4 rounded-xl border border-white/8 bg-white/[0.03] p-4">
+      {block.image && (
+        <img src={block.image} alt="" className="h-16 w-16 flex-shrink-0 rounded-lg object-contain" />
+      )}
+      <div className="min-w-0">
+        {block.title && <h3 className="mb-1 text-base font-black text-white">{block.title}</h3>}
+        <p className="text-sm leading-7 text-white/68 whitespace-pre-line">{block.text}</p>
+      </div>
+    </div>
+  );
+}
+
+export function ItemDetailLayout({ item, listHref, listLabel, catalogs }: ItemDetailLayoutProps) {
   const c = colorMap[item.color] ?? colorMap.gray;
+  const resolvedCatalogs = catalogs ?? {
+    equipment: readData<SectionListData>("equipment"),
+    materials: readData<SectionListData>("materials"),
+  };
   const sectionEntries = Object.entries(item.sections);
   const hasPieces = item.pieces && item.pieces.length > 0;
+  const attributes = item.attributes ?? [];
+  const skills = item.skills ?? [];
+  const acquisition = item.acquisition ?? [];
+  const crafting = item.crafting ?? [];
 
   return (
     <>
@@ -89,7 +125,79 @@ export function ItemDetailLayout({ item, listHref, listLabel }: ItemDetailLayout
             borderClass={c.border}
             textClass={c.text}
             activeBtnClass={c.activeBtn}
+            parentSlug={item.slug}
           />
+        )}
+
+        {(attributes.length > 0 || skills.length > 0) && (
+          <div className="mb-10 grid gap-5 md:grid-cols-2">
+            {attributes.length > 0 && (
+              <section className={`rounded-2xl border ${c.border} bg-black/35 p-6 backdrop-blur`}>
+                <p className={`mb-2 text-sm font-black tracking-[0.2em] ${c.text}`}>ATTRIBUTES</p>
+                <h2 className="mb-5 text-2xl font-black text-white">屬性</h2>
+                <ul className="space-y-2">
+                  {attributes.map((attribute, i) => (
+                    <li key={i} className="rounded-lg border border-white/8 bg-white/[0.03] px-4 py-2 text-sm font-bold text-white/75">{attribute}</li>
+                  ))}
+                </ul>
+              </section>
+            )}
+            {skills.length > 0 && (
+              <section className={`rounded-2xl border ${c.border} bg-black/35 p-6 backdrop-blur`}>
+                <p className={`mb-2 text-sm font-black tracking-[0.2em] ${c.text}`}>SKILLS</p>
+                <h2 className="mb-5 text-2xl font-black text-white">技能</h2>
+                <div className="space-y-3">
+                  {skills.map((skill, i) => (
+                    <div key={i} className="rounded-lg border border-white/8 bg-white/[0.03] p-4">
+                      <h3 className="font-black text-white">{skill.name}</h3>
+                      <p className="mt-1 text-sm leading-6 text-white/68 whitespace-pre-line">{skill.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+        )}
+
+        {(acquisition.length > 0 || crafting.length > 0) && (
+          <div className="mb-10 grid gap-5 lg:grid-cols-2">
+            {acquisition.length > 0 && (
+              <section className={`rounded-2xl border ${c.border} bg-black/35 p-6 backdrop-blur`}>
+                <p className={`mb-2 text-sm font-black tracking-[0.2em] ${c.text}`}>SOURCE</p>
+                <h2 className="mb-5 text-2xl font-black text-white">取得方式</h2>
+                <div className="space-y-4">
+                  {acquisition.map((block, i) => <DetailBlock key={i} block={block} catalogs={resolvedCatalogs} />)}
+                </div>
+              </section>
+            )}
+            {crafting.length > 0 && (
+              <section className={`rounded-2xl border ${c.border} bg-black/35 p-6 backdrop-blur`}>
+                <p className={`mb-2 text-sm font-black tracking-[0.2em] ${c.text}`}>CRAFTING</p>
+                <h2 className="mb-5 text-2xl font-black text-white">合成方式</h2>
+                <div className="space-y-4">
+                  {crafting.map((recipe, i) => (
+                    <div key={i} className="rounded-xl border border-white/8 bg-white/[0.03] p-4">
+                      {recipe.title && <h3 className="font-black text-white">{recipe.title}</h3>}
+                      {recipe.description && <p className="mt-1 text-sm leading-6 text-white/68 whitespace-pre-line">{recipe.description}</p>}
+                      <div className="mt-4 grid gap-3">
+                        {recipe.ingredients.map((ingredient, j) => (
+                          <div key={j} className="flex flex-wrap items-center gap-3">
+                            {ingredient.ref ? (
+                              <CatalogRefCard refData={ingredient.ref} catalogs={resolvedCatalogs} compact />
+                            ) : (
+                              <span className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-black text-white">{ingredient.name || "未命名素材"}</span>
+                            )}
+                            {ingredient.quantity && <span className={`text-sm font-black ${c.text}`}>x {ingredient.quantity}</span>}
+                            {ingredient.note && <span className="text-sm text-white/45">{ingredient.note}</span>}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
         )}
 
         {/* Content sections */}
@@ -108,17 +216,7 @@ export function ItemDetailLayout({ item, listHref, listLabel }: ItemDetailLayout
                   <p className="text-sm text-white/35">內容建置中...</p>
                 ) : (
                   <div className="space-y-4">
-                    {blocks.map((block, i) => (
-                      <div key={i} className="flex gap-4 rounded-xl border border-white/8 bg-white/[0.03] p-4">
-                        {block.image && (
-                          <img src={block.image} alt="" className="h-16 w-16 flex-shrink-0 rounded-lg object-contain" />
-                        )}
-                        <div className="min-w-0">
-                          {block.title && <h3 className="mb-1 text-base font-black text-white">{block.title}</h3>}
-                          <p className="text-sm leading-7 text-white/68 whitespace-pre-line">{block.text}</p>
-                        </div>
-                      </div>
-                    ))}
+                    {blocks.map((block, i) => <DetailBlock key={i} block={block} catalogs={resolvedCatalogs} />)}
                   </div>
                 )}
               </section>

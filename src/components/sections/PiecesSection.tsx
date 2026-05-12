@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import type { EquipmentPiece } from "@/types/site";
 
 type Props = {
@@ -9,44 +10,33 @@ type Props = {
   borderClass: string;
   textClass: string;
   activeBtnClass: string;
+  parentSlug: string;
 };
 
-function PieceCard({ piece, borderClass, textClass }: { piece: EquipmentPiece; borderClass: string; textClass: string }) {
+function PieceCard({ piece, parentSlug, borderClass, textClass }: { piece: EquipmentPiece; parentSlug: string; borderClass: string; textClass: string }) {
+  const href = `/equipment/${parentSlug}/${piece.slug || piece.name}`;
   return (
-    <div className={`rounded-2xl border ${borderClass} bg-black/40 p-5 backdrop-blur`}>
-      <div className="flex items-start gap-4">
+    <Link href={href} className={`group block rounded-xl border ${borderClass} bg-black/40 p-3 backdrop-blur transition hover:-translate-y-1 hover:bg-black/55`}>
+      <div className="flex flex-col items-center gap-2 text-center">
         {piece.image ? (
-          <img src={piece.image} alt={piece.name} className="h-20 w-20 flex-shrink-0 rounded-xl object-contain border border-white/10 bg-white/5" />
+          <img src={piece.image} alt={piece.name} className="h-16 w-16 rounded-lg object-contain border border-white/10 bg-white/5" />
         ) : (
-          <div className="h-20 w-20 flex-shrink-0 rounded-xl border border-white/10 bg-white/5" />
+          <div className="h-16 w-16 rounded-lg border border-white/10 bg-white/5" />
         )}
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 w-full">
           {piece.category && (
-            <span className={`mb-1.5 inline-block text-xs font-black tracking-widest ${textClass} opacity-80`}>
+            <span className={`mb-1 block truncate text-[10px] font-black tracking-widest ${textClass} opacity-80`}>
               {piece.category}
             </span>
           )}
-          <h3 className="text-lg font-black text-white leading-tight">{piece.name || "未命名裝備"}</h3>
-          {piece.effects.length > 0 && (
-            <ul className="mt-2 space-y-1">
-              {piece.effects.map((eff, i) => (
-                <li key={i} className={`text-xs font-bold ${textClass}`}>• {eff}</li>
-              ))}
-            </ul>
-          )}
+          <h3 className="truncate text-sm font-black leading-tight text-white group-hover:text-rift-gold">{piece.name || "未命名裝備"}</h3>
         </div>
       </div>
-      {piece.rating && (
-        <div className="mt-4 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3">
-          <p className="mb-1 text-xs font-black tracking-widest text-white/40">評價</p>
-          <p className="text-sm leading-6 text-white/70 whitespace-pre-line">{piece.rating}</p>
-        </div>
-      )}
-    </div>
+    </Link>
   );
 }
 
-export function PiecesSection({ pieces, pieceCategories, borderClass, textClass, activeBtnClass }: Props) {
+export function PiecesSection({ pieces, pieceCategories, borderClass, textClass, activeBtnClass, parentSlug }: Props) {
   const [search, setSearch] = useState("");
   const [selectedCats, setSelectedCats] = useState<Set<string>>(new Set());
 
@@ -139,9 +129,9 @@ export function PiecesSection({ pieces, pieceCategories, borderClass, textClass,
       {filtered.length === 0 ? (
         <p className="text-sm text-white/40">找不到符合的裝備。</p>
       ) : (
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {filtered.map((piece, i) => (
-            <PieceCard key={i} piece={piece} borderClass={borderClass} textClass={textClass} />
+            <PieceCard key={piece.slug || piece.name || i} piece={piece} parentSlug={parentSlug} borderClass={borderClass} textClass={textClass} />
           ))}
         </div>
       )}

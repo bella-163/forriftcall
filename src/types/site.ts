@@ -50,6 +50,27 @@ export type Skill = {
   description: string;
 };
 
+export type CatalogKind = "equipment" | "materials";
+
+export type CatalogRef = {
+  type: CatalogKind;
+  slug: string;
+  parentSlug?: string;
+};
+
+export type CraftIngredient = {
+  ref?: CatalogRef;
+  name?: string;
+  quantity?: string;
+  note?: string;
+};
+
+export type CraftRecipe = {
+  title: string;
+  description: string;
+  ingredients: CraftIngredient[];
+};
+
 export type ClassStat = {
   label: string;
   value: string | number;
@@ -59,6 +80,7 @@ export type PhaseBlock = {
   title?: string;
   image: string;
   text: string;
+  ref?: CatalogRef;
 };
 
 export type ClassData = {
@@ -68,6 +90,7 @@ export type ClassData = {
   description: string;
   color: "crimson" | "gold" | "violet" | "blue" | "green" | "gray";
   image: string;
+  imageRef?: CatalogRef;
   stats: ClassStat[];
   skills: {
     pre: Skill[];
@@ -110,11 +133,18 @@ export type NewsPageData = {
 };
 
 export type EquipmentPiece = {
+  slug?: string;
   image: string;
   name: string;
   category: string;
+  description?: string;
   effects: string[];
   rating: string;
+  attributes?: string[];
+  skills?: Skill[];
+  acquisition?: PhaseBlock[];
+  crafting?: CraftRecipe[];
+  sections?: Record<string, PhaseBlock[]>;
 };
 
 export type ItemData = {
@@ -124,6 +154,10 @@ export type ItemData = {
   description: string;
   image: string;
   color: "crimson" | "gold" | "violet" | "blue" | "green" | "gray";
+  attributes?: string[];
+  skills?: Skill[];
+  acquisition?: PhaseBlock[];
+  crafting?: CraftRecipe[];
   sections: Record<string, PhaseBlock[]>;
   pieces?: EquipmentPiece[];
   pieceCategories?: string[];
@@ -133,5 +167,6 @@ export type SectionListData = {
   title: string;
   description: string;
   eyebrow: string;
+  categories?: string[];
   items: ItemData[];
 };

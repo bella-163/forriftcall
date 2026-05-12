@@ -3,7 +3,7 @@
 import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import type { ClassData, Skill, ClassStat, PhaseBlock } from "@/types/site";
+import type { CatalogRef, ClassData, SectionListData, Skill, ClassStat, PhaseBlock } from "@/types/site";
 
 const COLOR_OPTIONS = ["crimson", "gold", "violet", "blue", "green", "gray"] as const;
 
@@ -14,6 +14,7 @@ const EMPTY_CLASS: ClassData = {
   description: "",
   color: "crimson",
   image: "",
+  imageRef: undefined,
   stats: [
     { label: "傷害", value: "B" },
     { label: "射程", value: "C" },
@@ -29,6 +30,31 @@ const EMPTY_CLASS: ClassData = {
     post: { 技能介紹: [], 推薦裝備: [], 推薦配件: [] },
   },
 };
+
+type CatalogOption = {
+  type: CatalogRef["type"];
+  parentSlug?: string;
+  slug: string;
+  name: string;
+};
+
+function refToValue(ref?: CatalogRef) {
+  if (!ref) return "";
+  return ref.parentSlug ? `${ref.type}:${ref.parentSlug}/${ref.slug}` : `${ref.type}:${ref.slug}`;
+}
+
+function valueToRef(value: string): CatalogRef | undefined {
+  const [type, rawSlug] = value.split(":");
+  if ((type !== "equipment" && type !== "materials") || !rawSlug) return undefined;
+  const [parentSlug, slug] = rawSlug.includes("/") ? rawSlug.split("/") : ["", rawSlug];
+  if (!slug) return undefined;
+  if (type === "equipment" && parentSlug) return { type, parentSlug, slug };
+  return { type, slug };
+}
+
+function refLabel(type: CatalogRef["type"]) {
+  return type === "equipment" ? "裝備" : "素材";
+}
 
 function Input({ label, value, onChange, multiline }: { label: string; value: string; onChange: (v: string) => void; multiline?: boolean }) {
   const cls = "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 outline-none focus:border-rift-crimson/60";
@@ -53,8 +79,30 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [catalogOptions, setCatalogOptions] = useState<CatalogOption[]>([]);
 
   useEffect(() => {
+    fetch("/api/admin/data?key=equipment")
+      .then((r) => r.json())
+      .then((data: SectionListData) => data.items.flatMap((parent) =>
+        (parent.pieces ?? []).map((piece) => ({
+          type: "equipment" as const,
+          parentSlug: parent.slug,
+          slug: piece.slug || piece.name,
+          name: `${parent.name} / ${piece.name || "未命名裝備"}`,
+        })),
+      ))
+      .then((equipment) => {
+        fetch("/api/admin/data?key=materials")
+          .then((r) => r.json())
+          .then((data: SectionListData) => {
+            const materials = data.items.map((i) => ({ type: "materials" as const, slug: i.slug, name: i.name }));
+            setCatalogOptions([...equipment, ...materials]);
+          })
+          .catch(() => setCatalogOptions(equipment));
+      })
+      .catch(() => setCatalogOptions([]));
+
     if (isNew) return;
     fetch("/api/admin/data?key=classes")
       .then((r) => r.json())
@@ -67,7 +115,7 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
             const p: Record<string, PhaseBlock[]> = {};
             Object.entries(found.phases[phase]).forEach(([k, v]) => {
               p[k] = Array.isArray(v)
-                ? v.map((block) => ({ title: block.title ?? "", image: block.image ?? "", text: block.text ?? "" }))
+                ? v.map((block) => ({ title: block.title ?? "", image: block.image ?? "", text: block.text ?? "", ref: block.ref }))
                 : (v ? [{ title: "", image: "", text: v as unknown as string }] : []);
             });
             migrated.phases = { ...migrated.phases, [phase]: p };
@@ -118,6 +166,9 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
 
   function setField<K extends keyof ClassData>(key: K, value: ClassData[K]) {
     setCls((c) => ({ ...c, [key]: value }));
+  }
+  function setImageRef(ref?: CatalogRef) {
+    setCls((c) => ({ ...c, imageRef: ref, image: ref ? "" : c.image }));
   }
   function updateSkill(phase: "pre" | "post", i: number, field: keyof Skill, value: string) {
     setCls((c) => {
@@ -176,12 +227,33 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
       return { ...c, phases: { ...c.phases, [phase]: { ...c.phases[phase], [sectionKey]: blocks } } };
     });
   }
-  function updateBlock(phase: "pre" | "post", sectionKey: string, i: number, field: keyof PhaseBlock, value: string) {
+  function updateBlock(phase: "pre" | "post", sectionKey: string, i: number, field: keyof PhaseBlock, value: string | CatalogRef | undefined) {
     setCls((c) => {
       const blocks = [...c.phases[phase][sectionKey]];
       blocks[i] = { ...blocks[i], [field]: value };
+      if (field === "ref" && value) blocks[i] = { ...blocks[i], image: "", title: "" };
       return { ...c, phases: { ...c.phases, [phase]: { ...c.phases[phase], [sectionKey]: blocks } } };
     });
+  }
+
+  function ReferenceSelect({ value, onChange, label }: { value?: CatalogRef; onChange: (ref?: CatalogRef) => void; label: string }) {
+    return (
+      <div>
+        <label className="mb-1.5 block text-xs font-bold text-white/50">{label}</label>
+        <select
+          value={refToValue(value)}
+          onChange={(e) => onChange(valueToRef(e.target.value))}
+          className="w-full rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-sm text-white outline-none"
+        >
+          <option value="">不引用</option>
+          {catalogOptions.map((option) => (
+            <option key={refToValue(option)} value={refToValue(option)}>
+              {refLabel(option.type)} / {option.name}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
   }
 
   const SaveBtn = () => (
@@ -234,18 +306,23 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
         <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
           <h2 className="mb-5 text-xl font-black text-white">職業圖片</h2>
           <div className="flex items-center gap-5">
-            {cls.image && <img src={cls.image} alt="" className="h-24 w-24 object-contain rounded-xl border border-white/10" />}
+            {cls.image && !cls.imageRef && <img src={cls.image} alt="" className="h-24 w-24 object-contain rounded-xl border border-white/10" />}
             <div className="space-y-3">
-              <Input label="圖片路徑" value={cls.image} onChange={(v) => setField("image", v)} />
-              <label className="block cursor-pointer rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm font-bold text-white hover:bg-white/10 w-fit">
-                {uploading ? "上傳中..." : "上傳圖片"}
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={(e) => e.target.files?.[0] && uploadImageTo(e.target.files[0], (url) => setField("image", url))}
-                />
-              </label>
+              <ReferenceSelect label="引用裝備或素材（選了之後會使用該項目的圖片與連結）" value={cls.imageRef} onChange={setImageRef} />
+              {!cls.imageRef && (
+                <>
+                  <Input label="圖片路徑" value={cls.image} onChange={(v) => setField("image", v)} />
+                  <label className="block cursor-pointer rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm font-bold text-white hover:bg-white/10 w-fit">
+                    {uploading ? "上傳中..." : "上傳圖片"}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => e.target.files?.[0] && uploadImageTo(e.target.files[0], (url) => setField("image", url))}
+                    />
+                  </label>
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -346,30 +423,33 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
                             value={block.title ?? ""}
                             onChange={(v) => updateBlock(phase, sectionKey, i, "title", v)}
                           />
+                          <ReferenceSelect label="引用裝備或素材（選填）" value={block.ref} onChange={(ref) => updateBlock(phase, sectionKey, i, "ref", ref)} />
                           {/* Image row */}
-                          <div className="flex items-center gap-3">
-                            {block.image && (
-                              <img src={block.image} alt="" className="h-12 w-12 flex-shrink-0 rounded-lg object-contain border border-white/10" />
-                            )}
-                            <div className="flex flex-1 gap-2">
-                              <div className="flex-1">
-                                <Input
-                                  label="圖片路徑（選填）"
-                                  value={block.image}
-                                  onChange={(v) => updateBlock(phase, sectionKey, i, "image", v)}
-                                />
+                          {!block.ref && (
+                            <div className="flex items-center gap-3">
+                              {block.image && (
+                                <img src={block.image} alt="" className="h-12 w-12 flex-shrink-0 rounded-lg object-contain border border-white/10" />
+                              )}
+                              <div className="flex flex-1 gap-2">
+                                <div className="flex-1">
+                                  <Input
+                                    label="圖片路徑（選填）"
+                                    value={block.image}
+                                    onChange={(v) => updateBlock(phase, sectionKey, i, "image", v)}
+                                  />
+                                </div>
+                                <label className="mt-5 flex-shrink-0 cursor-pointer rounded-lg border border-white/15 bg-white/5 px-3 py-2.5 text-xs font-bold text-white hover:bg-white/10 h-fit">
+                                  {uploading ? "..." : "上傳"}
+                                  <input
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    onChange={(e) => e.target.files?.[0] && uploadImageTo(e.target.files[0], (url) => updateBlock(phase, sectionKey, i, "image", url))}
+                                  />
+                                </label>
                               </div>
-                              <label className="mt-5 flex-shrink-0 cursor-pointer rounded-lg border border-white/15 bg-white/5 px-3 py-2.5 text-xs font-bold text-white hover:bg-white/10 h-fit">
-                                {uploading ? "..." : "上傳"}
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  className="hidden"
-                                  onChange={(e) => e.target.files?.[0] && uploadImageTo(e.target.files[0], (url) => updateBlock(phase, sectionKey, i, "image", url))}
-                                />
-                              </label>
                             </div>
-                          </div>
+                          )}
                           {/* Text */}
                           <Input
                             label="文字內容"

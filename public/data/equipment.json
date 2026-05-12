@@ -20,10 +20,66 @@
           "image": "",
           "name": "12345",
           "category": "",
+          "effects": [
+            "0"
+          ],
+          "rating": "",
+          "slug": "",
+          "description": "123",
+          "attributes": [
+            "無"
+          ],
+          "skills": [
+            {
+              "name": "",
+              "description": "test"
+            }
+          ],
+          "acquisition": [
+            {
+              "title": "",
+              "image": "",
+              "text": "",
+              "ref": {
+                "type": "equipment",
+                "parentSlug": "weapons",
+                "slug": "12345"
+              }
+            }
+          ],
+          "crafting": [
+            {
+              "title": "123",
+              "description": "",
+              "ingredients": [
+                {
+                  "ref": {
+                    "type": "equipment",
+                    "parentSlug": "weapons",
+                    "slug": "12345"
+                  },
+                  "name": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "image": "",
+          "name": "",
+          "category": "",
           "effects": [],
-          "rating": ""
+          "rating": "",
+          "attributes": [],
+          "skills": [],
+          "acquisition": [],
+          "crafting": []
         }
-      ]
+      ],
+      "attributes": [],
+      "skills": [],
+      "acquisition": [],
+      "crafting": []
     },
     {
       "slug": "armor",
@@ -90,5 +146,11 @@
       "pieceCategories": [],
       "pieces": []
     }
+  ],
+  "categories": [
+    "裝備",
+    "配件",
+    "系統",
+    "套裝"
   ]
 }

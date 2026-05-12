@@ -9,6 +9,7 @@ const SECTIONS = [
   { href: "/admin/pages/commands", label: "功能與指令", desc: "指令清單內容" },
   { href: "/admin/news", label: "最新消息", desc: "各分類消息列表，可新增、編輯、刪除消息" },
   { href: "/admin/equipment", label: "裝備介紹", desc: "裝備項目清單，可點進去編輯內容" },
+  { href: "/admin/materials", label: "素材介紹", desc: "素材項目清單，可點進去編輯內容" },
   { href: "/admin/monsters", label: "怪物介紹", desc: "怪物項目清單，可點進去編輯內容" },
   { href: "/admin/dungeons", label: "副本攻略", desc: "副本項目清單，可點進去編輯內容" },
 ];

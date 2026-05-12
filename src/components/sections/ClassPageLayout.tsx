@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { CatalogRefCard } from "@/components/sections/CatalogRefCard";
+import { readData } from "@/lib/data";
+import { findCatalogItem } from "@/lib/catalog";
+import type { CatalogRef, SectionListData } from "@/types/site";
 
 type Skill = {
   name: string;
@@ -15,6 +19,7 @@ type ClassPageProps = {
   color: "crimson" | "gold" | "violet" | "blue" | "green" | "gray";
   href: string;
   image?: string;
+  imageRef?: CatalogRef;
   stats: { label: string; value: number | string }[];
   skills: {
     pre: Skill[];
@@ -68,8 +73,14 @@ const colorMap = {
   },
 };
 
-export function ClassPageLayout({ name, role, description, color, href, image, stats, skills, tips }: ClassPageProps) {
+export function ClassPageLayout({ name, role, description, color, href, image, imageRef, stats, skills, tips }: ClassPageProps) {
   const c = colorMap[color];
+  const catalogs = {
+    equipment: readData<SectionListData>("equipment"),
+    materials: readData<SectionListData>("materials"),
+  };
+  const referencedImageItem = findCatalogItem(catalogs, imageRef);
+  const displayImage = referencedImageItem?.image ?? image;
 
   return (
     <>
@@ -86,13 +97,17 @@ export function ClassPageLayout({ name, role, description, color, href, image, s
             <p className={`mt-2 text-lg font-bold ${c.text}`}>{role}</p>
             <p className="mt-4 max-w-2xl text-base leading-8 text-white/68 whitespace-pre-line">{description}</p>
           </div>
-          {image && (
+          {imageRef && referencedImageItem ? (
+            <div className="hidden shrink-0 lg:block">
+              <CatalogRefCard refData={imageRef} catalogs={catalogs} />
+            </div>
+          ) : displayImage ? (
             <img
-              src={image}
+              src={displayImage}
               alt={name}
               className="hidden shrink-0 w-48 object-contain drop-shadow-[0_0_32px_rgba(217,45,69,.5)] lg:block"
             />
-          )}
+          ) : null}
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
