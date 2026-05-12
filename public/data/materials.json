@@ -5,20 +5,5 @@
   "categories": [
     "素材"
   ],
-  "items": [
-    {
-      "slug": "",
-      "name": "test",
-      "category": "",
-      "description": "",
-      "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778604409863.png",
-      "color": "crimson",
-      "sections": {},
-      "attributes": [],
-      "skills": [],
-      "acquisition": [],
-      "crafting": [],
-      "pieces": []
-    }
-  ]
+  "items": []
 }
