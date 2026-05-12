@@ -3,6 +3,8 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { readData } from "@/lib/data";
 import type { ClassData } from "@/types/site";
 
+export const dynamic = "force-dynamic";
+
 const colorStyles: Record<string, { card: string; badge: string; arrow: string }> = {
   crimson: {
     card: "border-rift-crimson/45 bg-rift-crimson/10 hover:border-rift-crimson/70",

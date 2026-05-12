@@ -6,6 +6,8 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { readData } from "@/lib/data";
 import type { HomeData } from "@/types/site";
 
+export const dynamic = "force-dynamic";
+
 export default function HomePage() {
   const home = readData<HomeData>("home");
   return (

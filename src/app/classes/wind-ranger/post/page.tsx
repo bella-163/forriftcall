@@ -2,6 +2,8 @@ import { ClassPhaseLayout } from "@/components/sections/ClassPhaseLayout";
 import { readData } from "@/lib/data";
 import type { ClassData } from "@/types/site";
 
+export const dynamic = "force-dynamic";
+
 export default function WindRangerPostPage() {
   const classes = readData<ClassData[]>("classes");
   const cls = classes.find((c) => c.slug === "wind-ranger")!;

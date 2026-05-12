@@ -3,6 +3,8 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { readData } from "@/lib/data";
 import type { SectionListData } from "@/types/site";
 
+export const dynamic = "force-dynamic";
+
 const colorStyles: Record<string, { card: string; badge: string; arrow: string }> = {
   crimson: { card: "border-rift-crimson/45 bg-rift-crimson/10 hover:border-rift-crimson/70", badge: "bg-rift-crimson/20 text-rift-crimson", arrow: "text-rift-crimson" },
   blue: { card: "border-rift-blue/45 bg-rift-blue/10 hover:border-rift-blue/70", badge: "bg-rift-blue/20 text-rift-blue", arrow: "text-rift-blue" },
