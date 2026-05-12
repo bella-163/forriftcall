@@ -3,7 +3,32 @@
   "description": "整理伺服器中的素材來源、用途與合成方式。",
   "eyebrow": "斷界召喚資料庫",
   "categories": [
-    "素材"
+    "素材",
+    "貨幣"
   ],
-  "items": []
+  "items": [
+    {
+      "slug": "crystal_ingot",
+      "name": "斷界晶塊",
+      "category": "貨幣",
+      "description": "用於日常交易與基礎裝備強化",
+      "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778604409863.png",
+      "color": "crimson",
+      "sections": {},
+      "categories": [
+        "貨幣"
+      ],
+      "acquisition": [
+        {
+          "title": "擊敗任何怪物皆有機會掉落",
+          "image": "",
+          "text": ""
+        }
+      ],
+      "attributes": [],
+      "skills": [],
+      "crafting": [],
+      "pieces": []
+    }
+  ]
 }
