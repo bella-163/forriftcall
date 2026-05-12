@@ -61,12 +61,12 @@
       "pre": {
         "技能介紹": [
           {
-            "title": "不屈意志 - 被動",
+            "title": "不屈意志 （被動）",
             "image": "/images/warrior_pre_1.png",
             "text": "推薦指數：⭐⭐⭐⭐⭐\n自帶10%減傷、最大生命10%回復\n還有天生反甲，屬於非常強力的被動效果"
           },
           {
-            "title": "霸裂連斬 - 普攻",
+            "title": "霸裂連斬 （普攻）",
             "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778584947357.png",
             "text": "推薦指數：⭐\n普攻\n非常普通\n需要注意的是：第五下會讓自身跳起來，非常煩人\n"
           },
@@ -86,7 +86,7 @@
             "text": "推薦指數：⭐\n需求等級：15\n位移技\n會向前方衝刺一小段距離\n戰士唯一可以把他玩家撞飛的技能"
           },
           {
-            "title": "鐵血屏障 - 增益",
+            "title": "鐵血屏障 （增益）",
             "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585406639.png",
             "text": "推薦指數：⭐⭐⭐⭐⭐\n需求等級：20\n護盾\n會產生一個紅色的護盾覆蓋在角色身上\n可以抵擋5次傷害\n每次抵擋都會觸發最大生命10%的回復"
           },
@@ -112,19 +112,24 @@
       "post": {
         "技能介紹": [
           {
-            "title": "烈火意志 - 被動",
+            "title": "烈火意志 （被動）",
             "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585939891.png",
             "text": "推薦指數：⭐⭐⭐⭐⭐\n戰士二轉的被動\n是戰士所有輸出來源的核心\n提供大量物理傷害%加成\n總共有十層，"
           },
           {
-            "title": "烈火滅魂斬 - 普攻",
+            "title": "烈火滅魂斬 （普攻）",
             "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778586043593.png",
             "text": "推薦指數：⭐⭐⭐⭐⭐\n戰士二轉的普攻\n與二轉之前相比，差異非常大\n但這跟它本身傷害無關\n它的主要作用是維持二轉被動「炎神」的疊層\n因此一定要帶它"
           },
           {
-            "title": "",
-            "image": "",
-            "text": ""
+            "title": "不知火",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778586089895.png",
+            "text": "推薦指數：⭐\n需求等級：90\n位移技\n快速往前衝刺一小段距離\n戰士二轉最沒用的技能"
+          },
+          {
+            "title": "盛炎輪舞 · 鐵血護盾（增益）",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778586213347.png",
+            "text": "推薦指數：⭐⭐⭐⭐⭐\n二轉神技\n護盾的上位版\n不僅繼承了抵擋5次傷害的效果\n還額外提供兩秒的無敵\n並放環繞自身的斬擊，能直接回滿血\n效果非常強大！\n"
           }
         ],
         "推薦裝備": [],
