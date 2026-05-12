@@ -3,7 +3,7 @@
 import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import type { ClassData, Skill, ClassStat } from "@/types/site";
+import type { ClassData, Skill, ClassStat, PhaseBlock } from "@/types/site";
 
 const COLOR_OPTIONS = ["crimson", "gold", "violet", "blue", "green", "gray"] as const;
 
@@ -24,7 +24,10 @@ const EMPTY_CLASS: ClassData = {
   ],
   skills: { pre: [{ name: "", description: "" }], post: [{ name: "", description: "" }] },
   tips: [""],
-  phases: { pre: { 技能介紹: "", 推薦裝備: "", 推薦配件: "" }, post: { 技能介紹: "", 推薦裝備: "", 推薦配件: "" } },
+  phases: {
+    pre: { 技能介紹: [], 推薦裝備: [], 推薦配件: [] },
+    post: { 技能介紹: [], 推薦裝備: [], 推薦配件: [] },
+  },
 };
 
 function Input({ label, value, onChange, multiline }: { label: string; value: string; onChange: (v: string) => void; multiline?: boolean }) {
@@ -57,17 +60,28 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
       .then((r) => r.json())
       .then((classes: ClassData[]) => {
         const found = classes.find((c) => c.slug === slug);
-        if (found) setCls(found);
+        if (found) {
+          // migrate old string phases to new PhaseBlock[] format
+          const migrated = { ...found };
+          (["pre", "post"] as const).forEach((phase) => {
+            const p: Record<string, PhaseBlock[]> = {};
+            Object.entries(found.phases[phase]).forEach(([k, v]) => {
+              p[k] = Array.isArray(v) ? v : (v ? [{ image: "", text: v as unknown as string }] : []);
+            });
+            migrated.phases = { ...migrated.phases, [phase]: p };
+          });
+          setCls(migrated);
+        }
       });
   }, [slug, isNew]);
 
-  async function uploadImage(file: File) {
+  async function uploadImageTo(file: File, callback: (url: string) => void) {
     setUploading(true);
     const form = new FormData();
     form.append("file", file);
     const res = await fetch("/api/admin/upload", { method: "POST", body: form });
     const { url } = await res.json();
-    setCls((c) => ({ ...c, image: url }));
+    callback(url);
     setUploading(false);
   }
 
@@ -125,19 +139,37 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
   }
   function addTip() { setCls((c) => ({ ...c, tips: [...c.tips, ""] })); }
   function removeTip(i: number) { setCls((c) => ({ ...c, tips: c.tips.filter((_, idx) => idx !== i) })); }
-  function updatePhaseSection(phase: "pre" | "post", key: string, value: string) {
-    setCls((c) => ({ ...c, phases: { ...c.phases, [phase]: { ...c.phases[phase], [key]: value } } }));
-  }
+
+  // Phase block management
   function addPhaseSection(phase: "pre" | "post") {
     const newKey = prompt("請輸入區塊名稱（例如：技能介紹）");
     if (!newKey) return;
-    setCls((c) => ({ ...c, phases: { ...c.phases, [phase]: { ...c.phases[phase], [newKey]: "" } } }));
+    setCls((c) => ({ ...c, phases: { ...c.phases, [phase]: { ...c.phases[phase], [newKey]: [] } } }));
   }
   function removePhaseSection(phase: "pre" | "post", key: string) {
     setCls((c) => {
       const p = { ...c.phases[phase] };
       delete p[key];
       return { ...c, phases: { ...c.phases, [phase]: p } };
+    });
+  }
+  function addBlock(phase: "pre" | "post", sectionKey: string) {
+    setCls((c) => {
+      const blocks = [...(c.phases[phase][sectionKey] ?? []), { image: "", text: "" }];
+      return { ...c, phases: { ...c.phases, [phase]: { ...c.phases[phase], [sectionKey]: blocks } } };
+    });
+  }
+  function removeBlock(phase: "pre" | "post", sectionKey: string, i: number) {
+    setCls((c) => {
+      const blocks = c.phases[phase][sectionKey].filter((_, idx) => idx !== i);
+      return { ...c, phases: { ...c.phases, [phase]: { ...c.phases[phase], [sectionKey]: blocks } } };
+    });
+  }
+  function updateBlock(phase: "pre" | "post", sectionKey: string, i: number, field: keyof PhaseBlock, value: string) {
+    setCls((c) => {
+      const blocks = [...c.phases[phase][sectionKey]];
+      blocks[i] = { ...blocks[i], [field]: value };
+      return { ...c, phases: { ...c.phases, [phase]: { ...c.phases[phase], [sectionKey]: blocks } } };
     });
   }
 
@@ -200,7 +232,7 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
                   type="file"
                   accept="image/*"
                   className="hidden"
-                  onChange={(e) => e.target.files?.[0] && uploadImage(e.target.files[0])}
+                  onChange={(e) => e.target.files?.[0] && uploadImageTo(e.target.files[0], (url) => setField("image", url))}
                 />
               </label>
             </div>
@@ -273,21 +305,73 @@ export default function ClassEditorPage({ params }: { params: Promise<{ slug: st
           </div>
         </section>
 
-        {/* Phase sections */}
+        {/* Phase sections with blocks */}
         {(["pre", "post"] as const).map((phase) => (
           <section key={phase} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
             <div className="mb-5 flex items-center justify-between">
               <h2 className="text-xl font-black text-white">詳細頁內容 — {phase === "pre" ? "二轉前" : "二轉後"}</h2>
-              <button onClick={() => addPhaseSection(phase)} className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-bold text-white hover:bg-white/10">+ 新增區塊</button>
+              <button onClick={() => addPhaseSection(phase)} className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-bold text-white hover:bg-white/10">+ 新增分類</button>
             </div>
-            <div className="space-y-4">
-              {Object.entries(cls.phases[phase]).map(([key, val]) => (
-                <div key={key} className="rounded-xl border border-white/10 p-4">
-                  <div className="mb-3 flex items-center justify-between">
-                    <span className="text-sm font-bold text-white">{key}</span>
-                    <button onClick={() => removePhaseSection(phase, key)} className="text-xs text-red-400 hover:text-red-300">刪除</button>
+            <div className="space-y-6">
+              {Object.entries(cls.phases[phase]).map(([sectionKey, blocks]) => (
+                <div key={sectionKey} className="rounded-xl border border-white/10 p-4">
+                  {/* Section header */}
+                  <div className="mb-4 flex items-center justify-between">
+                    <span className="font-black text-white">{sectionKey}</span>
+                    <button onClick={() => removePhaseSection(phase, sectionKey)} className="text-xs text-red-400 hover:text-red-300">刪除分類</button>
                   </div>
-                  <Input label="內容" value={val} onChange={(v) => updatePhaseSection(phase, key, v)} multiline />
+
+                  {/* Blocks */}
+                  <div className="space-y-3">
+                    {blocks.map((block, i) => (
+                      <div key={i} className="rounded-lg border border-white/8 bg-white/[0.03] p-3">
+                        <div className="mb-2 flex items-center justify-between">
+                          <span className="text-xs font-bold text-white/40">小方塊 {i + 1}</span>
+                          <button onClick={() => removeBlock(phase, sectionKey, i)} className="text-xs text-red-400 hover:text-red-300">刪除</button>
+                        </div>
+                        <div className="space-y-3">
+                          {/* Image row */}
+                          <div className="flex items-center gap-3">
+                            {block.image && (
+                              <img src={block.image} alt="" className="h-12 w-12 flex-shrink-0 rounded-lg object-contain border border-white/10" />
+                            )}
+                            <div className="flex flex-1 gap-2">
+                              <div className="flex-1">
+                                <Input
+                                  label="圖片路徑（選填）"
+                                  value={block.image}
+                                  onChange={(v) => updateBlock(phase, sectionKey, i, "image", v)}
+                                />
+                              </div>
+                              <label className="mt-5 flex-shrink-0 cursor-pointer rounded-lg border border-white/15 bg-white/5 px-3 py-2.5 text-xs font-bold text-white hover:bg-white/10 h-fit">
+                                {uploading ? "..." : "上傳"}
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={(e) => e.target.files?.[0] && uploadImageTo(e.target.files[0], (url) => updateBlock(phase, sectionKey, i, "image", url))}
+                                />
+                              </label>
+                            </div>
+                          </div>
+                          {/* Text */}
+                          <Input
+                            label="文字內容"
+                            value={block.text}
+                            onChange={(v) => updateBlock(phase, sectionKey, i, "text", v)}
+                            multiline
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => addBlock(phase, sectionKey)}
+                    className="mt-3 w-full rounded-lg border border-dashed border-white/20 py-2 text-xs font-bold text-white/40 hover:border-white/40 hover:text-white/70 transition"
+                  >
+                    + 新增小方塊
+                  </button>
                 </div>
               ))}
             </div>

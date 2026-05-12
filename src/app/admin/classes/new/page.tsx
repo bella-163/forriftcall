@@ -24,7 +24,7 @@ const EMPTY_CLASS: ClassData = {
   ],
   skills: { pre: [{ name: "", description: "" }], post: [{ name: "", description: "" }] },
   tips: [""],
-  phases: { pre: { 技能介紹: "", 推薦裝備: "", 推薦配件: "" }, post: { 技能介紹: "", 推薦裝備: "", 推薦配件: "" } },
+  phases: { pre: { 技能介紹: [], 推薦裝備: [], 推薦配件: [] }, post: { 技能介紹: [], 推薦裝備: [], 推薦配件: [] } },
 };
 
 function Input({ label, value, onChange, multiline }: { label: string; value: string; onChange: (v: string) => void; multiline?: boolean }) {

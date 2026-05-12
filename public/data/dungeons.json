@@ -1,12 +1,72 @@
 {
   "title": "副本攻略",
   "description": "整理各副本的入場條件、機制解說、BOSS 攻略與獎勵說明。",
+  "eyebrow": "斷界召喚資料庫",
   "items": [
-    "新手副本",
-    "進階副本",
-    "高難度副本",
-    "公會副本",
-    "限時副本",
-    "獎勵總覽"
+    {
+      "slug": "beginner",
+      "name": "新手副本",
+      "category": "入門",
+      "description": "適合新手的副本攻略。",
+      "image": "",
+      "color": "green",
+      "sections": {
+        "第一區": [
+          {
+            "image": "",
+            "text": "測試1"
+          },
+          {
+            "image": "",
+            "text": "測試2"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "advanced",
+      "name": "進階副本",
+      "category": "進階",
+      "description": "進階玩家挑戰副本。",
+      "image": "",
+      "color": "blue",
+      "sections": {}
+    },
+    {
+      "slug": "hard",
+      "name": "高難度副本",
+      "category": "高難",
+      "description": "高難度副本機制與攻略。",
+      "image": "",
+      "color": "crimson",
+      "sections": {}
+    },
+    {
+      "slug": "guild",
+      "name": "公會副本",
+      "category": "公會",
+      "description": "公會合作副本說明。",
+      "image": "",
+      "color": "violet",
+      "sections": {}
+    },
+    {
+      "slug": "timed",
+      "name": "限時副本",
+      "category": "限時",
+      "description": "限時開放副本資訊。",
+      "image": "",
+      "color": "gold",
+      "sections": {}
+    },
+    {
+      "slug": "rewards",
+      "name": "獎勵總覽",
+      "category": "資料",
+      "description": "各副本獎勵與掉落物總覽。",
+      "image": "",
+      "color": "gray",
+      "sections": {}
+    }
   ]
 }

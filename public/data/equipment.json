@@ -1,12 +1,74 @@
 {
   "title": "裝備介紹",
   "description": "蒐集神器、強化鍛造、附魔養成，打造屬於你的極限戰力。",
+  "eyebrow": "斷界召喚資料庫",
   "items": [
-    "武器裝備",
-    "防具裝備",
-    "飾品配件",
-    "強化鍛造",
-    "附魔系統",
-    "套裝效果"
+    {
+      "slug": "weapons",
+      "name": "武器裝備",
+      "category": "裝備",
+      "description": "各種武器類型的介紹與比較。",
+      "image": "",
+      "color": "crimson",
+      "sections": {},
+      "pieces": [
+        {
+          "image": "",
+          "name": "",
+          "effects": [],
+          "rating": ""
+        }
+      ]
+    },
+    {
+      "slug": "armor",
+      "name": "防具裝備",
+      "category": "裝備",
+      "description": "頭盔、胸甲、腿甲等防具介紹。",
+      "image": "",
+      "color": "blue",
+      "sections": {},
+      "pieces": []
+    },
+    {
+      "slug": "accessories",
+      "name": "飾品配件",
+      "category": "配件",
+      "description": "戒指、項鍊、耳環等飾品介紹。",
+      "image": "",
+      "color": "gold",
+      "sections": {},
+      "pieces": []
+    },
+    {
+      "slug": "enhance",
+      "name": "強化鍛造",
+      "category": "系統",
+      "description": "裝備強化與鍛造系統說明。",
+      "image": "",
+      "color": "violet",
+      "sections": {},
+      "pieces": []
+    },
+    {
+      "slug": "enchant",
+      "name": "附魔系統",
+      "category": "系統",
+      "description": "附魔屬性與搭配建議。",
+      "image": "",
+      "color": "green",
+      "sections": {},
+      "pieces": []
+    },
+    {
+      "slug": "sets",
+      "name": "套裝效果",
+      "category": "套裝",
+      "description": "套裝組合加成與推薦搭配。",
+      "image": "",
+      "color": "gray",
+      "sections": {},
+      "pieces": []
+    }
   ]
 }

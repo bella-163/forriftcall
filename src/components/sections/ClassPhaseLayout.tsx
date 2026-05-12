@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import type { PhaseBlock } from "@/types/site";
 
 type ClassPhaseLayoutProps = {
   className: string;
   phase: "pre" | "post";
   color: "crimson" | "gold" | "violet" | "blue" | "gray";
   classHref: string;
-  sections?: Record<string, string>;
+  sections?: Record<string, PhaseBlock[]>;
 };
 
 const colorMap = {
@@ -47,11 +48,9 @@ const phaseLabel = {
   post: "80 - 180 等・二轉後",
 };
 
-const defaultSections = ["技能介紹", "推薦裝備", "推薦配件"];
-
 export function ClassPhaseLayout({ className, phase, color, classHref, sections }: ClassPhaseLayoutProps) {
   const c = colorMap[color];
-  const sectionKeys = sections ? Object.keys(sections) : defaultSections;
+  const sectionEntries = sections ? Object.entries(sections) : [];
 
   return (
     <>
@@ -77,22 +76,37 @@ export function ClassPhaseLayout({ className, phase, color, classHref, sections 
 
         {/* Content sections */}
         <div className="space-y-6">
-          {sectionKeys.map((sectionName) => {
-            const content = sections?.[sectionName] ?? "";
-            return (
+          {sectionEntries.length === 0 ? (
+            <p className="text-sm text-white/35">內容建置中...</p>
+          ) : (
+            sectionEntries.map(([sectionName, blocks]) => (
               <section key={sectionName} className={`rounded-2xl border ${c.border} bg-black/35 p-6 backdrop-blur`}>
                 <p className={`mb-2 text-sm font-black tracking-[0.2em] ${c.text}`}>
                   {sectionName.toUpperCase()}
                 </p>
-                <h2 className="text-2xl font-black text-white">{sectionName}</h2>
-                {content ? (
-                  <p className="mt-6 text-sm leading-7 text-white/68 whitespace-pre-line">{content}</p>
+                <h2 className="mb-6 text-2xl font-black text-white">{sectionName}</h2>
+
+                {blocks.length === 0 ? (
+                  <p className="text-sm text-white/35">內容建置中...</p>
                 ) : (
-                  <p className="mt-6 text-sm text-white/35">內容建置中...</p>
+                  <div className="space-y-4">
+                    {blocks.map((block, i) => (
+                      <div key={i} className="flex gap-4 rounded-xl border border-white/8 bg-white/[0.03] p-4">
+                        {block.image && (
+                          <img
+                            src={block.image}
+                            alt=""
+                            className="h-16 w-16 flex-shrink-0 rounded-lg object-contain"
+                          />
+                        )}
+                        <p className="text-sm leading-7 text-white/68 whitespace-pre-line">{block.text}</p>
+                      </div>
+                    ))}
+                  </div>
                 )}
               </section>
-            );
-          })}
+            ))
+          )}
         </div>
       </main>
     </>

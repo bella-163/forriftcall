@@ -55,6 +55,11 @@ export type ClassStat = {
   value: string | number;
 };
 
+export type PhaseBlock = {
+  image: string;
+  text: string;
+};
+
 export type ClassData = {
   slug: string;
   name: string;
@@ -69,8 +74,8 @@ export type ClassData = {
   };
   tips: string[];
   phases: {
-    pre: Record<string, string>;
-    post: Record<string, string>;
+    pre: Record<string, PhaseBlock[]>;
+    post: Record<string, PhaseBlock[]>;
   };
 };
 
@@ -78,4 +83,29 @@ export type PageData = {
   title: string;
   description: string;
   items: string[];
+};
+
+export type EquipmentPiece = {
+  image: string;
+  name: string;
+  effects: string[];
+  rating: string;
+};
+
+export type ItemData = {
+  slug: string;
+  name: string;
+  category: string;
+  description: string;
+  image: string;
+  color: "crimson" | "gold" | "violet" | "blue" | "green" | "gray";
+  sections: Record<string, PhaseBlock[]>;
+  pieces?: EquipmentPiece[];
+};
+
+export type SectionListData = {
+  title: string;
+  description: string;
+  eyebrow: string;
+  items: ItemData[];
 };

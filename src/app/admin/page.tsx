@@ -8,9 +8,9 @@ const SECTIONS = [
   { href: "/admin/classes", label: "職業列表", desc: "管理所有職業的資料與排序" },
   { href: "/admin/pages/commands", label: "功能與指令", desc: "指令清單內容" },
   { href: "/admin/pages/news", label: "最新消息", desc: "消息分類清單" },
-  { href: "/admin/pages/equipment", label: "裝備介紹", desc: "裝備分類清單" },
-  { href: "/admin/pages/monsters", label: "怪物介紹", desc: "怪物分類清單" },
-  { href: "/admin/pages/dungeons", label: "副本攻略", desc: "副本分類清單" },
+  { href: "/admin/equipment", label: "裝備介紹", desc: "裝備項目清單，可點進去編輯內容" },
+  { href: "/admin/monsters", label: "怪物介紹", desc: "怪物項目清單，可點進去編輯內容" },
+  { href: "/admin/dungeons", label: "副本攻略", desc: "副本項目清單，可點進去編輯內容" },
 ];
 
 export default function AdminPage() {

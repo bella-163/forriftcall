@@ -1,12 +1,61 @@
 {
   "title": "怪物介紹",
   "description": "掌握怪物出沒地點、技能機制與掉落物，讓討伐更有效率。",
+  "eyebrow": "斷界召喚資料庫",
   "items": [
-    "普通怪物",
-    "精英怪物",
-    "頭目 BOSS",
-    "世界 BOSS",
-    "副本怪物",
-    "掉落物總表"
+    {
+      "slug": "normal",
+      "name": "普通怪物",
+      "category": "怪物",
+      "description": "各地區的普通怪物資訊。",
+      "image": "",
+      "color": "gray",
+      "sections": {}
+    },
+    {
+      "slug": "elite",
+      "name": "精英怪物",
+      "category": "怪物",
+      "description": "精英怪物的分布與機制。",
+      "image": "",
+      "color": "blue",
+      "sections": {}
+    },
+    {
+      "slug": "boss",
+      "name": "頭目 BOSS",
+      "category": "BOSS",
+      "description": "各地區頭目 BOSS 攻略。",
+      "image": "",
+      "color": "crimson",
+      "sections": {}
+    },
+    {
+      "slug": "world-boss",
+      "name": "世界 BOSS",
+      "category": "BOSS",
+      "description": "世界 BOSS 出現時間與攻略。",
+      "image": "",
+      "color": "violet",
+      "sections": {}
+    },
+    {
+      "slug": "dungeon-monster",
+      "name": "副本怪物",
+      "category": "副本",
+      "description": "副本內怪物機制說明。",
+      "image": "",
+      "color": "gold",
+      "sections": {}
+    },
+    {
+      "slug": "drops",
+      "name": "掉落物總表",
+      "category": "資料",
+      "description": "各怪物掉落物品一覽。",
+      "image": "",
+      "color": "green",
+      "sections": {}
+    }
   ]
 }
