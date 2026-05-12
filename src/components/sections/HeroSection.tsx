@@ -1,4 +1,6 @@
-export function HeroSection() {
+import type { HeroData } from "@/types/site";
+
+export function HeroSection({ hero }: { hero: HeroData }) {
   return (
     <section className="relative overflow-hidden border-b border-white/10">
       <div className="absolute inset-0 bg-rift-radial" />
@@ -18,20 +20,20 @@ export function HeroSection() {
           />
         </div>
         <p className="mt-6 text-lg tracking-[0.32em] text-white/80 md:text-2xl">
-          打破界線・召喚傳說・改寫命運
+          {hero.tagline}
         </p>
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
           <a
-            href="#features"
+            href={hero.ctaPrimary.href}
             className="rounded-xl border border-rift-crimson/60 bg-rift-crimson px-8 py-3 text-base font-black text-white shadow-glow transition hover:-translate-y-1 hover:bg-rift-crimson/85"
           >
-            查看攻略分類
+            {hero.ctaPrimary.text}
           </a>
           <a
-            href="#quick-start"
+            href={hero.ctaSecondary.href}
             className="rounded-xl border border-white/15 bg-white/10 px-8 py-3 text-base font-bold text-white backdrop-blur transition hover:-translate-y-1 hover:bg-white/15"
           >
-            快速開始
+            {hero.ctaSecondary.text}
           </a>
         </div>
       </div>

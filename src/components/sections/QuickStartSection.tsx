@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { quickStartItems } from "@/data/site";
+import type { QuickStartItem } from "@/types/site";
 
-export function QuickStartSection() {
+export function QuickStartSection({ items }: { items: QuickStartItem[] }) {
   const [copied, setCopied] = useState<string | null>(null);
 
   function copyIP(ip: string) {
@@ -20,7 +20,7 @@ export function QuickStartSection() {
       </div>
 
       <div className="space-y-4">
-        {quickStartItems.map((item) => (
+        {items.map((item) => (
           <div key={item.title} className="rounded-2xl border border-white/10 bg-black/35 p-4">
             {item.ips ? (
               <div>

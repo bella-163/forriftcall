@@ -1,5 +1,17 @@
 import { ClassPhaseLayout } from "@/components/sections/ClassPhaseLayout";
+import { readData } from "@/lib/data";
+import type { ClassData } from "@/types/site";
 
 export default function ArcaneMagePrePage() {
-  return <ClassPhaseLayout className="萬象法師" phase="pre" color="violet" classHref="/classes/arcane-mage" />;
+  const classes = readData<ClassData[]>("classes");
+  const cls = classes.find((c) => c.slug === "arcane-mage")!;
+  return (
+    <ClassPhaseLayout
+      className={cls.name}
+      phase="pre"
+      color={cls.color as "violet"}
+      classHref={`/classes/${cls.slug}`}
+      sections={cls.phases.pre}
+    />
+  );
 }

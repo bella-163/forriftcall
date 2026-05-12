@@ -1,5 +1,17 @@
 import { ClassPhaseLayout } from "@/components/sections/ClassPhaseLayout";
+import { readData } from "@/lib/data";
+import type { ClassData } from "@/types/site";
 
 export default function HeavyWarriorPrePage() {
-  return <ClassPhaseLayout className="重裝戰士" phase="pre" color="crimson" classHref="/classes/heavy-warrior" />;
+  const classes = readData<ClassData[]>("classes");
+  const cls = classes.find((c) => c.slug === "heavy-warrior")!;
+  return (
+    <ClassPhaseLayout
+      className={cls.name}
+      phase="pre"
+      color={cls.color as "crimson"}
+      classHref={`/classes/${cls.slug}`}
+      sections={cls.phases.pre}
+    />
+  );
 }

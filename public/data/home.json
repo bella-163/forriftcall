@@ -1,0 +1,84 @@
+{
+  "hero": {
+    "tagline": "打破界線・召喚傳說・改寫命運",
+    "ctaPrimary": { "text": "查看攻略分類", "href": "#features" },
+    "ctaSecondary": { "text": "快速開始", "href": "#quick-start" }
+  },
+  "featureCards": [
+    {
+      "title": "職業介紹",
+      "eyebrow": "多元職業・自由轉職",
+      "description": "探索專屬你的戰鬥風格，了解各職業定位、技能與成長路線。",
+      "href": "/classes",
+      "theme": "crimson"
+    },
+    {
+      "title": "裝備介紹",
+      "eyebrow": "史詩裝備・強化鍛造",
+      "description": "蒐集神器、強化鍛造、附魔養成，打造屬於你的極限戰力。",
+      "href": "/equipment",
+      "theme": "gold"
+    },
+    {
+      "title": "怪物介紹",
+      "eyebrow": "強大魔物・首領降臨",
+      "description": "掌握怪物出沒地點、技能機制與掉落物，讓討伐更有效率。",
+      "href": "/monsters",
+      "theme": "violet"
+    },
+    {
+      "title": "功能與指令",
+      "eyebrow": "實用指令・系統功能",
+      "description": "整理伺服器常用指令、系統功能與玩家社群操作指南。",
+      "href": "/commands",
+      "theme": "blue"
+    }
+  ],
+  "guideCards": [
+    {
+      "title": "新手必看！快速上手指南",
+      "category": "熱門",
+      "description": "從零開始熟悉斷界召喚的冒險流程。",
+      "rating": "5.0"
+    },
+    {
+      "title": "推薦裝備",
+      "category": "裝備",
+      "description": "最強裝備獲取路線與養成順序整理。",
+      "rating": "4.9"
+    }
+  ],
+  "serverIPs": [
+    { "label": "主要伺服器", "ip": "mc.riftcall.net" },
+    { "label": "RPG1 分流", "ip": "rpg1.riftcall.net" },
+    { "label": "RPG2 分流", "ip": "rpg2.riftcall.net" }
+  ],
+  "quickStart": [
+    {
+      "title": "遊戲連線",
+      "description": "加入伺服器開始冒險",
+      "action": "複製 IP",
+      "ips": [
+        { "label": "主要伺服器", "ip": "mc.riftcall.net" },
+        { "label": "RPG1 分流", "ip": "rpg1.riftcall.net" },
+        { "label": "RPG2 分流", "ip": "rpg2.riftcall.net" }
+      ]
+    },
+    {
+      "title": "新手教學",
+      "description": "必看！新手成長指引",
+      "action": "立即查看"
+    },
+    {
+      "title": "常見問題",
+      "description": "解答你的所有疑問",
+      "action": "前往查看"
+    },
+    {
+      "title": "玩家社群",
+      "description": "加入社群一起交流",
+      "action": "加入 Discord",
+      "href": "https://discord.riftcall.net/"
+    }
+  ]
+}

@@ -1,5 +1,17 @@
 import { ClassPhaseLayout } from "@/components/sections/ClassPhaseLayout";
+import { readData } from "@/lib/data";
+import type { ClassData } from "@/types/site";
 
 export default function LightWalkerPrePage() {
-  return <ClassPhaseLayout className="裁光行者" phase="pre" color="gold" classHref="/classes/light-walker" />;
+  const classes = readData<ClassData[]>("classes");
+  const cls = classes.find((c) => c.slug === "light-walker")!;
+  return (
+    <ClassPhaseLayout
+      className={cls.name}
+      phase="pre"
+      color={cls.color as "gold"}
+      classHref={`/classes/${cls.slug}`}
+      sections={cls.phases.pre}
+    />
+  );
 }

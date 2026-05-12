@@ -1,22 +1,14 @@
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SectionPlaceholder } from "@/components/sections/SectionPlaceholder";
+import { readData } from "@/lib/data";
+import type { PageData } from "@/types/site";
 
 export default function CommandsPage() {
+  const data = readData<PageData>("commands");
   return (
     <>
       <SiteHeader />
-      <SectionPlaceholder
-        title="功能與指令"
-        description="整理伺服器常用指令、系統功能、公會、隊伍、傳送、商店與玩家互動功能。"
-        items={[
-          "/spawn - 傳回主城",
-          "/home - 設家＆傳家指令",
-          "/ah - 打開拍賣行指令",
-          "/guild - 公會相關指令",
-          "/party - 組隊指令",
-          "/bp - 通行證",
-        ]}
-      />
+      <SectionPlaceholder title={data.title} description={data.description} items={data.items} />
     </>
   );
 }

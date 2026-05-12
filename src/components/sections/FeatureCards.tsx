@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { featureCards } from "@/data/site";
+import type { FeatureCard } from "@/types/site";
 
 const themeMap = {
   crimson: "border-rift-crimson/45 bg-rift-crimson/10 text-rift-crimson",
@@ -8,11 +8,11 @@ const themeMap = {
   blue: "border-rift-blue/45 bg-rift-blue/10 text-rift-blue",
 };
 
-export function FeatureCards() {
+export function FeatureCards({ cards }: { cards: FeatureCard[] }) {
   return (
     <section id="features" className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-        {featureCards.map((card) => (
+        {cards.map((card) => (
           <Link
             key={card.title}
             href={card.href}

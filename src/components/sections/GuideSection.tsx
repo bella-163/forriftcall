@@ -1,6 +1,6 @@
-import { guideCards } from "@/data/site";
+import type { GuideCard } from "@/types/site";
 
-export function GuideSection() {
+export function GuideSection({ cards }: { cards: GuideCard[] }) {
   return (
     <section id="guides" className="rounded-3xl border border-rift-crimson/30 bg-black/35 p-6 shadow-2xl backdrop-blur">
       <div className="mb-6 flex items-center justify-between gap-4">
@@ -14,7 +14,7 @@ export function GuideSection() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {guideCards.map((guide) => (
+        {cards.map((guide) => (
           <article key={guide.title} className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] transition hover:-translate-y-1 hover:border-rift-crimson/45">
             <div className="h-32 bg-gradient-to-br from-rift-violet/35 via-rift-crimson/20 to-rift-gold/20" />
             <div className="p-4">

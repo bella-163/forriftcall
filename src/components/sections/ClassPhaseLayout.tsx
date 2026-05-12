@@ -6,6 +6,7 @@ type ClassPhaseLayoutProps = {
   phase: "pre" | "post";
   color: "crimson" | "gold" | "violet" | "blue" | "gray";
   classHref: string;
+  sections?: Record<string, string>;
 };
 
 const colorMap = {
@@ -46,10 +47,12 @@ const phaseLabel = {
   post: "80 - 180 等・二轉後",
 };
 
-const sections = ["技能介紹", "推薦裝備", "推薦配件"];
+const defaultSections = ["技能介紹", "推薦裝備", "推薦配件"];
 
-export function ClassPhaseLayout({ className, phase, color, classHref }: ClassPhaseLayoutProps) {
+export function ClassPhaseLayout({ className, phase, color, classHref, sections }: ClassPhaseLayoutProps) {
   const c = colorMap[color];
+  const sectionKeys = sections ? Object.keys(sections) : defaultSections;
+
   return (
     <>
       <SiteHeader />
@@ -74,15 +77,22 @@ export function ClassPhaseLayout({ className, phase, color, classHref }: ClassPh
 
         {/* Content sections */}
         <div className="space-y-6">
-          {sections.map((section) => (
-            <section key={section} className={`rounded-2xl border ${c.border} bg-black/35 p-6 backdrop-blur`}>
-              <p className={`mb-2 text-sm font-black tracking-[0.2em] ${c.text}`}>
-                {section.toUpperCase()}
-              </p>
-              <h2 className="text-2xl font-black text-white">{section}</h2>
-              <p className="mt-6 text-sm text-white/35">內容建置中...</p>
-            </section>
-          ))}
+          {sectionKeys.map((sectionName) => {
+            const content = sections?.[sectionName] ?? "";
+            return (
+              <section key={sectionName} className={`rounded-2xl border ${c.border} bg-black/35 p-6 backdrop-blur`}>
+                <p className={`mb-2 text-sm font-black tracking-[0.2em] ${c.text}`}>
+                  {sectionName.toUpperCase()}
+                </p>
+                <h2 className="text-2xl font-black text-white">{sectionName}</h2>
+                {content ? (
+                  <p className="mt-6 text-sm leading-7 text-white/68 whitespace-pre-line">{content}</p>
+                ) : (
+                  <p className="mt-6 text-sm text-white/35">內容建置中...</p>
+                )}
+              </section>
+            );
+          })}
         </div>
       </main>
     </>

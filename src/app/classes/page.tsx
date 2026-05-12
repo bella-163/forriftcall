@@ -1,55 +1,44 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { readData } from "@/lib/data";
+import type { ClassData } from "@/types/site";
 
-const classes = [
-  {
-    name: "重裝戰士",
-    role: "前線坦克・近戰守護者",
-    description: "身披重甲、以盾為刃，是隊伍中不可或缺的前線守護者。",
-    href: "/classes/heavy-warrior",
-    color: "border-rift-crimson/45 bg-rift-crimson/10 hover:border-rift-crimson/70",
+const colorStyles: Record<string, { card: string; badge: string; arrow: string }> = {
+  crimson: {
+    card: "border-rift-crimson/45 bg-rift-crimson/10 hover:border-rift-crimson/70",
     badge: "bg-rift-crimson/20 text-rift-crimson",
     arrow: "text-rift-crimson",
   },
-  {
-    name: "疾風遊俠",
-    role: "遠距輸出・機動射手",
-    description: "來去如風、箭無虛發，以靈活機動在遠距離掌控戰局。",
-    href: "/classes/wind-ranger",
-    color: "border-rift-blue/45 bg-rift-blue/10 hover:border-rift-blue/70",
+  blue: {
+    card: "border-rift-blue/45 bg-rift-blue/10 hover:border-rift-blue/70",
     badge: "bg-rift-blue/20 text-rift-blue",
     arrow: "text-rift-blue",
   },
-  {
-    name: "萬象法師",
-    role: "爆發輸出・元素魔法師",
-    description: "掌握萬象之力，以元素魔法橫掃戰場、輸出無雙。",
-    href: "/classes/arcane-mage",
-    color: "border-rift-violet/45 bg-rift-violet/10 hover:border-rift-violet/70",
+  violet: {
+    card: "border-rift-violet/45 bg-rift-violet/10 hover:border-rift-violet/70",
     badge: "bg-rift-violet/20 text-rift-violet",
     arrow: "text-rift-violet",
   },
-  {
-    name: "裁光行者",
-    role: "神聖輔助・治癒者",
-    description: "以神聖之光治癒盟友、懲戒敵人，是支撐隊伍續戰的核心。",
-    href: "/classes/light-walker",
-    color: "border-rift-gold/45 bg-rift-gold/10 hover:border-rift-gold/70",
+  gold: {
+    card: "border-rift-gold/45 bg-rift-gold/10 hover:border-rift-gold/70",
     badge: "bg-rift-gold/20 text-rift-gold",
     arrow: "text-rift-gold",
   },
-  {
-    name: "暗影刺客",
-    role: "單體爆發・隱匿刺殺者",
-    description: "潛行於暗處、一擊致命，以極致爆發力終結目標。",
-    href: "/classes/shadow-assassin",
-    color: "border-slate-500/45 bg-slate-500/10 hover:border-slate-400/70",
+  gray: {
+    card: "border-slate-500/45 bg-slate-500/10 hover:border-slate-400/70",
     badge: "bg-slate-500/20 text-slate-300",
     arrow: "text-slate-300",
   },
-];
+  green: {
+    card: "border-emerald-500/45 bg-emerald-500/10 hover:border-emerald-400/70",
+    badge: "bg-emerald-500/20 text-emerald-400",
+    arrow: "text-emerald-400",
+  },
+};
 
 export default function ClassesPage() {
+  const classes = readData<ClassData[]>("classes");
+
   return (
     <>
       <SiteHeader />
@@ -61,22 +50,25 @@ export default function ClassesPage() {
         </p>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
-          {classes.map((cls) => (
-            <Link
-              key={cls.href}
-              href={cls.href}
-              className={`group rounded-2xl border p-6 backdrop-blur transition hover:-translate-y-1 ${cls.color}`}
-            >
-              <span className={`inline-block rounded-full px-3 py-1 text-xs font-black ${cls.badge}`}>
-                {cls.role}
-              </span>
-              <h2 className="mt-3 text-3xl font-black text-white">{cls.name}</h2>
-              <p className="mt-3 text-sm leading-7 text-white/65">{cls.description}</p>
-              <div className={`mt-5 flex items-center gap-1 text-sm font-bold ${cls.arrow}`}>
-                查看詳情 <span className="transition group-hover:translate-x-1">→</span>
-              </div>
-            </Link>
-          ))}
+          {classes.map((cls) => {
+            const s = colorStyles[cls.color] ?? colorStyles.gray;
+            return (
+              <Link
+                key={cls.slug}
+                href={`/classes/${cls.slug}`}
+                className={`group rounded-2xl border p-6 backdrop-blur transition hover:-translate-y-1 ${s.card}`}
+              >
+                <span className={`inline-block rounded-full px-3 py-1 text-xs font-black ${s.badge}`}>
+                  {cls.role}
+                </span>
+                <h2 className="mt-3 text-3xl font-black text-white">{cls.name}</h2>
+                <p className="mt-3 text-sm leading-7 text-white/65">{cls.description.split("\n")[0]}</p>
+                <div className={`mt-5 flex items-center gap-1 text-sm font-bold ${s.arrow}`}>
+                  查看詳情 <span className="transition group-hover:translate-x-1">→</span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </main>
     </>

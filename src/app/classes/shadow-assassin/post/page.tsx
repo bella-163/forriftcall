@@ -1,5 +1,17 @@
 import { ClassPhaseLayout } from "@/components/sections/ClassPhaseLayout";
+import { readData } from "@/lib/data";
+import type { ClassData } from "@/types/site";
 
 export default function ShadowAssassinPostPage() {
-  return <ClassPhaseLayout className="暗影刺客" phase="post" color="gray" classHref="/classes/shadow-assassin" />;
+  const classes = readData<ClassData[]>("classes");
+  const cls = classes.find((c) => c.slug === "shadow-assassin")!;
+  return (
+    <ClassPhaseLayout
+      className={cls.name}
+      phase="post"
+      color={cls.color as "gray"}
+      classHref={`/classes/${cls.slug}`}
+      sections={cls.phases.post}
+    />
+  );
 }
