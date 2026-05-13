@@ -387,12 +387,12 @@
     "skills": {
       "pre": [
         {
-          "name": "",
-          "description": ""
+          "name": "疾風獵魂",
+          "description": "遊俠的被動技能"
         },
         {
-          "name": "",
-          "description": ""
+          "name": "精準射擊",
+          "description": "遊俠的普攻"
         }
       ],
       "post": [
@@ -413,7 +413,63 @@
     ],
     "phases": {
       "pre": {
-        "技能介紹": [],
+        "技能介紹": [
+          {
+            "title": "疾風獵魂",
+            "image": "",
+            "text": ""
+          },
+          {
+            "title": "精準射擊",
+            "image": "",
+            "text": ""
+          },
+          {
+            "title": "疾風步",
+            "image": "",
+            "text": ""
+          },
+          {
+            "title": "疾風意志",
+            "image": "",
+            "text": ""
+          },
+          {
+            "title": "疾風箭舞",
+            "image": "",
+            "text": ""
+          },
+          {
+            "title": "御風踏空",
+            "image": "",
+            "text": ""
+          },
+          {
+            "title": "爆炸箭矢",
+            "image": "",
+            "text": ""
+          },
+          {
+            "title": "風翔鳴爆",
+            "image": "",
+            "text": ""
+          },
+          {
+            "title": "箭雨轟域",
+            "image": "",
+            "text": ""
+          },
+          {
+            "title": "旋風追矢",
+            "image": "",
+            "text": ""
+          },
+          {
+            "title": "狂風龍捲殲滅箭",
+            "image": "",
+            "text": ""
+          }
+        ],
         "推薦裝備": [],
         "推薦配件": []
       },
