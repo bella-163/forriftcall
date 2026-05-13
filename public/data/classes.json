@@ -387,22 +387,22 @@
     "skills": {
       "pre": [
         {
-          "name": "穿雲箭",
-          "description": "蓄力射出一支高速穿透箭矢，穿透多個敵人並造成大量傷害。"
+          "name": "",
+          "description": ""
         },
         {
-          "name": "疾風步",
-          "description": "瞬間向指定方向位移，短暫進入加速狀態並重置基本攻擊。"
+          "name": "",
+          "description": ""
         }
       ],
       "post": [
         {
-          "name": "毒霧箭雨",
-          "description": "向範圍內射出大量毒箭，造成持續毒傷並減慢敵方移動速度。"
+          "name": "",
+          "description": ""
         },
         {
-          "name": "鷹眼專注",
-          "description": "激活後提升攻擊距離與暴擊率，持續時間內輸出大幅提升。"
+          "name": "",
+          "description": ""
         }
       ]
     },
