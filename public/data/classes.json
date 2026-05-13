@@ -158,18 +158,6 @@
             "text": "可替換成 蜥霸之魂石"
           }
         ],
-        "推薦技能點法": [
-          {
-            "title": "前期（1-50等）",
-            "image": "",
-            "text": "被動：要優先點滿\n\n普攻：非常普通，讓它維持在 1 級就好\n\n旋風斬：是前期的主要輸出來源，30等之前可以把所有技能技能點都先給它\n\n護盾：如果比較注重生存的人，可以在20等之後先把護盾點滿，再去點旋風斬\n\n昇龍霸：在30等之後請先把它點滿\n\n大招：缺點是很拖時間的動畫。但如果是全部打中的話，仍有非常可觀的輸出。因此建議帶著它。優先級在昇龍霸之後"
-          },
-          {
-            "title": "中期（51-79等）",
-            "image": "",
-            "text": "被動：仍然是最優先的選項\n\n旋風斬：已經不是主要輸出來源了，可以將它降為一級了\n\n護盾：保命手段依然非常強，不管有沒有要生存都要點滿！\n\n昇龍霸：是主要輸出手段，一定要將它點滿！\n\n大招：跟昇龍霸都是主要輸出手段！\n\n"
-          }
-        ],
         "技能推薦點法 - 前期(1-50等)": [
           {
             "title": "被動",
@@ -195,6 +183,33 @@
             "title": "大招",
             "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585583399.png",
             "text": "大招最致命的缺點是超級拖的動畫\n但如果全部都打中後仍有很高的傷害表現，所以建議帶著它\n其優先級在昇龍霸之後"
+          }
+        ],
+        "技能推薦點法 - 中期(50-79等)": [
+          {
+            "title": "被動",
+            "image": "/images/warrior_pre_1.png",
+            "text": "被動仍然是要最優先點滿的"
+          },
+          {
+            "title": "旋風斬",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585113890.png",
+            "text": "現在的主要輸出來源已經不靠它了\n可以把它洗回1級了"
+          },
+          {
+            "title": "護盾",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585406639.png",
+            "text": "護盾的保命能力非常強\n由於旋風斬退休了\n因此不論有沒有在乎生存，請把它點滿！"
+          },
+          {
+            "title": "昇龍霸",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585523213.png",
+            "text": "目前主要的輸出來源\n請第一優先把它點滿！"
+          },
+          {
+            "title": "大招",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585583399.png",
+            "text": "動畫很拖時間，但斬擊命中傷害表現很高\n跟昇龍霸是二轉前的主要輸出來源！"
           }
         ]
       },
