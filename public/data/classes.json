@@ -219,7 +219,23 @@
             "text": "第一段：左側能給予旋風斬技能冷卻以及額外的輸出\n\n第二段：右側則能給與昇龍霸冷卻及額外的傷害\n\n第三段：右側能給予火元素傷害，並降低大招的冷卻時間，同時給予大招額外傷害"
           }
         ],
-        "能力值": []
+        "能力值": [
+          {
+            "title": "體質",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778636398483.png",
+            "text": "戰士前期本來就沒什麼傷害\n所以一律先點體質拿生命來提高生存"
+          },
+          {
+            "title": "敏捷",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778636482540.png",
+            "text": "如果在有穿 wb1防具的情況下，就需要點敏捷把移動速度彌補回來"
+          },
+          {
+            "title": "力量",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778636554131.png",
+            "text": ""
+          }
+        ]
       },
       "post": {
         "技能介紹": [
