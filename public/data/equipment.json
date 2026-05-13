@@ -12,65 +12,26 @@
       "color": "crimson",
       "sections": {},
       "pieceCategories": [
-        "測試",
-        "123"
+        "主線武器"
       ],
       "pieces": [
         {
-          "image": "",
-          "name": "12345",
-          "category": "",
-          "effects": [
-            "0"
-          ],
-          "rating": "",
           "slug": "",
-          "description": "123",
-          "attributes": [
-            "無"
-          ],
-          "skills": [
-            {
-              "name": "",
-              "description": "test"
-            }
-          ],
-          "acquisition": [
-            {
-              "title": "",
-              "image": "",
-              "text": "",
-              "ref": {
-                "type": "equipment",
-                "parentSlug": "weapons",
-                "slug": "12345"
-              }
-            }
-          ],
-          "crafting": [
-            {
-              "title": "123",
-              "description": "",
-              "ingredients": [
-                {
-                  "ref": {
-                    "type": "equipment",
-                    "parentSlug": "weapons",
-                    "slug": "12345"
-                  },
-                  "name": ""
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "image": "",
-          "name": "",
-          "category": "",
+          "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778653601894.png",
+          "name": "哥步林獵人劍",
+          "category": "主線武器",
+          "description": "適用職業：戰士、刺客",
           "effects": [],
           "rating": "",
-          "attributes": [],
+          "sections": {},
+          "attributes": [
+            "攻擊傷害 +15",
+            "物理傷害 +2.5%",
+            "火元素傷害 +5",
+            "火元素傷害 +0.5%",
+            "暗元素傷害 +5",
+            "暗元素傷害 +0.5%"
+          ],
           "skills": [],
           "acquisition": [],
           "crafting": []
