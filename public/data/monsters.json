@@ -23,17 +23,12 @@
     },
     {
       "slug": "boss",
-      "name": "野外 BOSS",
+      "name": "頭目 BOSS",
       "category": "BOSS",
       "description": "各地區頭目 BOSS 攻略。",
       "image": "",
       "color": "crimson",
-      "sections": {},
-      "attributes": [],
-      "skills": [],
-      "acquisition": [],
-      "crafting": [],
-      "pieces": []
+      "sections": {}
     },
     {
       "slug": "world-boss",
@@ -46,12 +41,17 @@
     },
     {
       "slug": "dungeon-monster",
-      "name": "副本怪物",
+      "name": "活動 Boss",
       "category": "副本",
       "description": "副本內怪物機制說明。",
       "image": "",
       "color": "gold",
-      "sections": {}
+      "sections": {},
+      "attributes": [],
+      "skills": [],
+      "acquisition": [],
+      "crafting": [],
+      "pieces": []
     },
     {
       "slug": "drops",
