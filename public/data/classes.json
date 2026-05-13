@@ -696,13 +696,23 @@
         "技能介紹": [
           {
             "title": "血寂殺意",
-            "image": "",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639029843.png",
             "text": "被動\n二轉刺客自帶40%物理傷害、20%技能爆擊率\n靜止3秒後獲得狀態，狀態期間下一次技能造成雙倍傷害\n"
           },
           {
             "title": "殺戮連舞",
             "image": "",
             "text": "平A\n跟後續技能有連動\n110等前主點"
+          },
+          {
+            "title": "毀滅衝刺（位移）",
+            "image": "",
+            "text": "需求等級：90\n往前衝刺一小段距離\n衝刺完後獲得5秒 10%技能爆擊加成\n使用完會立刻得到「死亡寂靜」狀態"
+          },
+          {
+            "title": "",
+            "image": "",
+            "text": ""
           }
         ],
         "推薦裝備": [],
