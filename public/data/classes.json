@@ -55,7 +55,8 @@
       ]
     },
     "tips": [
-      "一轉前屬性值優先點滿體質"
+      "一轉前屬性值優先點滿體質",
+      "昇龍霸與昇龍霸改都是戰士非常優秀的技能，解鎖後一定要點滿！"
     ],
     "phases": {
       "pre": {
@@ -229,6 +230,11 @@
             "title": "敏捷",
             "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778636482540.png",
             "text": "如果在有穿 wb1防具的情況下，就需要點敏捷把移動速度彌補回來"
+          },
+          {
+            "title": "力量",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778636554131.png",
+            "text": ""
           }
         ]
       },
@@ -322,19 +328,24 @@
         ],
         "能力值": [
           {
-            "title": "體質",
-            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778636398483.png",
-            "text": ""
-          },
-          {
             "title": "力量",
             "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778636554131.png",
             "text": "二轉因為天生血多，因此可以不用點體質\n力量跟潛能都很重要\n如果不知道要點哪個，那就先點力量吧"
           },
           {
-            "title": "",
-            "image": "",
-            "text": ""
+            "title": "潛能",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778636702823.png",
+            "text": "潛能可縮短冷卻時間並提供招架機率\n二轉戰士後的必點天賦點"
+          },
+          {
+            "title": "精神",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778636848953.png",
+            "text": "缺魔的情況下可以點\n因為想打出大量輸出，就必須頻繁使用技能，就會造成大量魔力消耗\n如果可以接受自己喝魔力藥水就可以不用點"
+          },
+          {
+            "title": "敏捷",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778636482540.png",
+            "text": "單純為了提升速度所帶來的舒適感"
           }
         ]
       }
