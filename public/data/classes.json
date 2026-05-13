@@ -701,18 +701,33 @@
           },
           {
             "title": "殺戮連舞",
-            "image": "",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639129200.png",
             "text": "平A\n跟後續技能有連動\n110等前主點"
           },
           {
             "title": "毀滅衝刺（位移）",
-            "image": "",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639133435.png",
             "text": "需求等級：90\n往前衝刺一小段距離\n衝刺完後獲得5秒 10%技能爆擊加成\n使用完會立刻得到「死亡寂靜」狀態"
           },
           {
-            "title": "",
-            "image": "",
-            "text": ""
+            "title": "影震裂空斬",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639154064.png",
+            "text": "需求等級：95"
+          },
+          {
+            "title": "緋影迴旋匕首",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639163635.png",
+            "text": "需求等級：100"
+          },
+          {
+            "title": "緋影迴旋 · 八刃散華",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639167684.png",
+            "text": "需求等級：110"
+          },
+          {
+            "title": "奧義 · 死亡之舞",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639173821.png",
+            "text": "需求等級：120"
           }
         ],
         "推薦裝備": [],
