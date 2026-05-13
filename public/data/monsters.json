@@ -23,12 +23,17 @@
     },
     {
       "slug": "boss",
-      "name": "頭目 BOSS",
+      "name": "野外 BOSS",
       "category": "BOSS",
       "description": "各地區頭目 BOSS 攻略。",
       "image": "",
       "color": "crimson",
-      "sections": {}
+      "sections": {},
+      "attributes": [],
+      "skills": [],
+      "acquisition": [],
+      "crafting": [],
+      "pieces": []
     },
     {
       "slug": "world-boss",
@@ -57,5 +62,11 @@
       "color": "green",
       "sections": {}
     }
+  ],
+  "categories": [
+    "怪物",
+    "BOSS",
+    "副本",
+    "資料"
   ]
 }
