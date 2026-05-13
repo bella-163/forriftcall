@@ -172,19 +172,29 @@
         ],
         "技能推薦點法 - 前期(1-50等)": [
           {
-            "title": "",
-            "image": "",
-            "text": ""
+            "title": "被動",
+            "image": "/images/warrior_pre_1.png",
+            "text": "被動要最優先點滿"
           },
           {
-            "title": "test2",
-            "image": "",
-            "text": "",
-            "ref": {
-              "type": "equipment",
-              "parentSlug": "weapons",
-              "slug": "12345"
-            }
+            "title": "旋風斬",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585113890.png",
+            "text": "旋風斬是前期的主要輸出來源之一\n30等之前可以把技能點都給它"
+          },
+          {
+            "title": "護盾",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585406639.png",
+            "text": "如果比較注重生存的人，可以在20等之後轉成先把護盾點滿"
+          },
+          {
+            "title": "昇龍霸",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585523213.png",
+            "text": "昇龍霸是戰是二轉前的主要輸出來源\n昇龍霸的傷害很高\n30等解所以後，請把它點滿！"
+          },
+          {
+            "title": "大招",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585583399.png",
+            "text": "大招最致命的缺點是超級拖的動畫\n但如果全部都打中後仍有很高的傷害表現，所以建議帶著它\n其優先級在昇龍霸之後"
           }
         ]
       },
