@@ -250,6 +250,29 @@
             "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778586487865.png",
             "text": "推薦指數：⭐⭐⭐⭐⭐\n需求等級：120\n戰士二轉的大昭\n短暫延遲後會召喚一隻老虎向前撲擊，隨後爆炸\n是純粹的大傷害技能\n如果處於「炎神」狀態，傷害會非常恐怖"
           }
+        ],
+        "推薦裝備": [],
+        "技能推薦點法 - 後期(81-180等)": [
+          {
+            "title": "二轉前被動",
+            "image": "/images/warrior_pre_1.png",
+            "text": "二轉前被動即使到了二轉以後，效果仍然非常強！\n把被動放在任何一個主動槽仍然會有效果\n因此可以隨便選一個不太會用到的槽位放置此技能"
+          },
+          {
+            "title": "戰尊被動",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778585939891.png",
+            "text": "戰尊被動效果非常強\n是二轉以後必帶技能！"
+          },
+          {
+            "title": "二轉普攻",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778586043593.png",
+            "text": "二轉普攻的作用是與戰尊被動形成連動，用來維持「炎神」\n可提供大量的物理%加成\n進入「炎神」後，還會讓其他技能附帶燃燒\n是戰尊增加大量輸出傷害的主要核心關鍵\n但主要作用只是拿來維持被動疊層，因此請讓它永遠保持1級，不然會很耗魔！"
+          },
+          {
+            "title": "",
+            "image": "",
+            "text": ""
+          }
         ]
       }
     }
