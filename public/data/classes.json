@@ -698,14 +698,19 @@
             "text": "普攻\n非常普通的平A"
           },
           {
-            "title": "影襲步",
+            "title": "影襲步 （位移）",
             "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639795713.png",
-            "text": ""
+            "text": "需求等級：5\n向前衝刺並對路過的敵人造成傷害"
           },
           {
             "title": "影輪連襲（位移）",
             "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778652570690.png",
-            "text": "需求等擊：10\n向前突刺造成傷害後，接著向後跳並打出一段傷害\n最後再向前突刺敵人"
+            "text": "需求等級：10\n向前突刺造成傷害後，接著向後跳並打出一段傷害\n最後再向前突刺敵人"
+          },
+          {
+            "title": "影鉤術 （控制）",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778652645540.png",
+            "text": "需求等級：15\n"
           }
         ],
         "推薦裝備": [],
