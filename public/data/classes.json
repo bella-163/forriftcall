@@ -698,39 +698,14 @@
             "text": "普攻\n非常普通的平A"
           },
           {
-            "title": "影襲步 （位移）",
+            "title": "影襲步",
             "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639795713.png",
-            "text": "需求等級：5\n往前衝刺並釋放斬擊"
+            "text": ""
           },
           {
-            "title": "影輪連襲 （位移）",
-            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639938401.png",
-            "text": "需求等擊：10\n三段位移技能\n會先向前斬擊，接著向後斬擊，最後再向前突刺"
-          },
-          {
-            "title": "影鉤術",
-            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778640006992.png",
-            "text": "需求等擊：15"
-          },
-          {
-            "title": "煙幕術",
-            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778640012209.png",
-            "text": "需求等擊：20\n範圍緩速技能\n身處煙霧中可獲得隱身及加速效果"
-          },
-          {
-            "title": "瞬影 · 血印襲斬 （位移）",
-            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778640015432.png",
-            "text": "需求等擊：25\n標記目標後短暫會延遲\n接著斬擊穿過對方，並造成傷害"
-          },
-          {
-            "title": "殘影 · 綻華影斬 （控制）",
-            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778640239288.png",
-            "text": "需求等擊：30\n釋放暗影漩渦，將敵人吸引至中心\n無敵兩秒後，經過短暫延遲，會對敵人造成7次傷害"
-          },
-          {
-            "title": "無影 · 殺域亂舞 · 十二連",
-            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778640244747.png",
-            "text": "需求等擊：35\n無法被打斷\n會施放12次無差別斬擊"
+            "title": "影輪連襲（位移）",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778652570690.png",
+            "text": "需求等擊：10\n向前突刺造成傷害後，接著向後跳並打出一段傷害\n最後再向前突刺敵人"
           }
         ],
         "推薦裝備": [],
