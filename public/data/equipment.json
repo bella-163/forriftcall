@@ -12,31 +12,10 @@
       "color": "crimson",
       "sections": {},
       "pieceCategories": [
-        "主線武器"
+        "測試",
+        "123"
       ],
-      "pieces": [
-        {
-          "slug": "",
-          "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778653601894.png",
-          "name": "哥步林獵人劍",
-          "category": "主線武器",
-          "description": "適用職業：戰士、刺客",
-          "effects": [],
-          "rating": "",
-          "sections": {},
-          "attributes": [
-            "攻擊傷害 +15",
-            "物理傷害 +2.5%",
-            "火元素傷害 +5",
-            "火元素傷害 +0.5%",
-            "暗元素傷害 +5",
-            "暗元素傷害 +0.5%"
-          ],
-          "skills": [],
-          "acquisition": [],
-          "crafting": []
-        }
-      ],
+      "pieces": [],
       "attributes": [],
       "skills": [],
       "acquisition": [],
