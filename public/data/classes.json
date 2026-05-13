@@ -686,7 +686,23 @@
     ],
     "phases": {
       "pre": {
-        "技能介紹": [],
+        "技能介紹": [
+          {
+            "title": "割喉術",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639664368.png",
+            "text": "被動\n每次技能擊中敵人後，都有一定機率觸發「割喉」\n「割喉」會對目標造成該技能15%額外流血傷害3次"
+          },
+          {
+            "title": "影刃斬",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639751924.png",
+            "text": "普攻\n非常普通的平A"
+          },
+          {
+            "title": "影襲步",
+            "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778639795713.png",
+            "text": ""
+          }
+        ],
         "推薦裝備": [],
         "推薦配件": []
       },
