@@ -21,6 +21,34 @@ const EMPTY_PIECE: EquipmentPiece = { slug: "", image: "", name: "", category: "
 const EMPTY_BLOCK: PhaseBlock = { title: "", image: "", text: "" };
 const EMPTY_RECIPE: CraftRecipe = { title: "", description: "", ingredients: [] };
 
+function slugify(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function makeSlug(item: ItemData) {
+  return slugify(item.slug || item.name) || `item-${Date.now()}`;
+}
+
+function makeUniqueSlug(baseSlug: string, items: ItemData[], currentSlug?: string) {
+  let nextSlug = baseSlug;
+  let count = 2;
+  while (items.some((i) => i.slug === nextSlug && i.slug !== currentSlug)) {
+    nextSlug = `${baseSlug}-${count}`;
+    count += 1;
+  }
+  return nextSlug;
+}
+
+function indexFromRouteSlug(routeSlug: string) {
+  if (!routeSlug.startsWith("__index_")) return undefined;
+  const index = Number(routeSlug.replace("__index_", ""));
+  return Number.isInteger(index) && index >= 0 ? index : undefined;
+}
+
 function Input({ label, value, onChange, multiline, placeholder }: {
   label: string; value: string; onChange: (v: string) => void; multiline?: boolean; placeholder?: string;
 }) {
@@ -74,6 +102,7 @@ function refLabel(type: CatalogRef["type"]) {
 
 export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = false, showCatalogFields = false }: Props) {
   const isNew = slug === "new";
+  const routeIndex = indexFromRouteSlug(slug);
   const router = useRouter();
 
   const [item, setItem] = useState<ItemData>(EMPTY_ITEM);
@@ -119,14 +148,14 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
     fetch(`/api/admin/data?key=${dataKey}`)
       .then((r) => r.json())
       .then((data: SectionListData) => {
-        const found = data.items.find((i) => i.slug === slug);
+        const found = routeIndex === undefined ? data.items.find((i) => i.slug === slug) : data.items[routeIndex];
         if (found) {
           setItem(showCatalogFields && (!found.categories || found.categories.length === 0) && found.category
             ? { ...found, categories: [found.category] }
             : found);
         }
       });
-  }, [slug, isNew, dataKey, showCatalogFields]);
+  }, [slug, routeIndex, isNew, dataKey, showCatalogFields]);
 
   async function uploadImageTo(file: File, callback: (url: string) => void) {
     setUploading(true);
@@ -151,10 +180,13 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
     setSaving(true);
     const data: SectionListData = await fetch(`/api/admin/data?key=${dataKey}`).then((r) => r.json());
     const selectedCategories = (item.categories ?? []).filter(Boolean);
+    const currentSlug = routeIndex === undefined ? slug : data.items[routeIndex]?.slug;
+    const nextSlug = makeUniqueSlug(makeSlug(item), data.items, isNew ? undefined : currentSlug);
     const nextItem = {
       ...item,
+      slug: nextSlug,
       category: showCatalogFields ? (selectedCategories[0] ?? item.category) : item.category,
-      categories: showCatalogFields ? selectedCategories : item.categories,
+      categories: showCatalogFields ? selectedCategories : undefined,
       attributes: (item.attributes ?? []).filter(Boolean),
       skills: (item.skills ?? []).filter((skill) => skill.name || skill.description),
       acquisition: (item.acquisition ?? []).filter((block) => block.ref || block.title || block.image || block.text),
@@ -169,7 +201,14 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
     };
     const updated = isNew
       ? { ...data, categories: listCategories, items: [...data.items, nextItem] }
-      : { ...data, categories: listCategories, items: data.items.map((i) => (i.slug === slug ? nextItem : i)) };
+      : {
+          ...data,
+          categories: listCategories,
+          items: data.items.map((i, idx) => {
+            if (routeIndex !== undefined) return idx === routeIndex ? nextItem : i;
+            return i.slug === slug ? nextItem : i;
+          }),
+        };
     const res = await fetch(`/api/admin/data?key=${dataKey}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -183,7 +222,8 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
     }
     setSaving(false);
     setSaved(true);
-    if (isNew) router.push(`${backHref}/${item.slug}`);
+    setItem(nextItem);
+    if (isNew || nextSlug !== slug) router.push(`${backHref}/${nextSlug}`);
     setTimeout(() => setSaved(false), 2000);
   }
 

@@ -18,10 +18,10 @@ export function CatalogListAdmin({ dataKey, title, adminHref, newLabel }: Props)
     fetch(`/api/admin/data?key=${dataKey}`).then((r) => r.json()).then(setData);
   }, [dataKey]);
 
-  async function deleteItem(slug: string) {
+  async function deleteItem(slug: string, index: number) {
     if (!data) return;
     if (!confirm("確定刪除？")) return;
-    const updated = { ...data, items: data.items.filter((i) => i.slug !== slug) };
+    const updated = { ...data, items: data.items.filter((i, idx) => slug ? i.slug !== slug : idx !== index) };
     const res = await fetch(`/api/admin/data?key=${dataKey}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -52,8 +52,10 @@ export function CatalogListAdmin({ dataKey, title, adminHref, newLabel }: Props)
       ) : (
         <div className="space-y-3">
           {data.items.length === 0 && <p className="text-sm text-white/35">尚無項目。</p>}
-          {data.items.map((item) => (
-            <div key={item.slug} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+          {data.items.map((item, index) => {
+            const editSlug = item.slug || `__index_${index}`;
+            return (
+            <div key={item.slug || `item-${index}`} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
               {item.image ? (
                 <img src={item.image} alt="" className="h-12 w-12 rounded-lg object-contain border border-white/10" />
               ) : (
@@ -61,12 +63,13 @@ export function CatalogListAdmin({ dataKey, title, adminHref, newLabel }: Props)
               )}
               <div className="flex-1">
                 <p className="font-black text-white">{item.name}</p>
-                <p className="text-sm text-white/45">{item.category || "未分類"} · {item.slug}</p>
+                <p className="text-sm text-white/45">{item.category || "未分類"} · {item.slug || "尚未建立 URL"}</p>
               </div>
-              <Link href={`${adminHref}/${item.slug}`} className="rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm font-bold text-white hover:bg-white/10">編輯</Link>
-              <button onClick={() => deleteItem(item.slug)} className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-bold text-red-400 hover:bg-red-500/20">刪除</button>
+              <Link href={`${adminHref}/${editSlug}`} className="rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm font-bold text-white hover:bg-white/10">編輯</Link>
+              <button onClick={() => deleteItem(item.slug, index)} className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-bold text-red-400 hover:bg-red-500/20">刪除</button>
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>
