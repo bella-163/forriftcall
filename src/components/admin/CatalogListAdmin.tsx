@@ -22,11 +22,16 @@ export function CatalogListAdmin({ dataKey, title, adminHref, newLabel }: Props)
     if (!data) return;
     if (!confirm("確定刪除？")) return;
     const updated = { ...data, items: data.items.filter((i) => i.slug !== slug) };
-    await fetch(`/api/admin/data?key=${dataKey}`, {
+    const res = await fetch(`/api/admin/data?key=${dataKey}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updated),
     });
+    if (!res.ok) {
+      const err = await res.json().catch(() => null);
+      alert(`刪除失敗：${err?.error ?? "請稍後再試"}`);
+      return;
+    }
     setData(updated);
   }
 

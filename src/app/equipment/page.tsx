@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { readData } from "@/lib/data";
+import { readRuntimeData } from "@/lib/data";
 import type { SectionListData } from "@/types/site";
 
 export const dynamic = "force-dynamic";
@@ -14,8 +14,8 @@ const colorStyles: Record<string, { card: string; badge: string; arrow: string }
   gray: { card: "border-slate-500/45 bg-slate-500/10 hover:border-slate-400/70", badge: "bg-slate-500/20 text-slate-300", arrow: "text-slate-300" },
 };
 
-export default function EquipmentPage() {
-  const data = readData<SectionListData>("equipment");
+export default async function EquipmentPage() {
+  const data = await readRuntimeData<SectionListData>("equipment");
   return (
     <>
       <SiteHeader />

@@ -1,12 +1,12 @@
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { MaterialsCatalogSection } from "@/components/sections/MaterialsCatalogSection";
-import { readData } from "@/lib/data";
+import { readRuntimeData } from "@/lib/data";
 import type { SectionListData } from "@/types/site";
 
 export const dynamic = "force-dynamic";
 
-export default function MaterialsPage() {
-  const data = readData<SectionListData>("materials");
+export default async function MaterialsPage() {
+  const data = await readRuntimeData<SectionListData>("materials");
   return (
     <>
       <SiteHeader />

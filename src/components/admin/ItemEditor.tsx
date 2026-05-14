@@ -170,11 +170,17 @@ export function ItemEditor({ dataKey, backHref, backLabel, slug, showPieces = fa
     const updated = isNew
       ? { ...data, categories: listCategories, items: [...data.items, nextItem] }
       : { ...data, categories: listCategories, items: data.items.map((i) => (i.slug === slug ? nextItem : i)) };
-    await fetch(`/api/admin/data?key=${dataKey}`, {
+    const res = await fetch(`/api/admin/data?key=${dataKey}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updated),
     });
+    if (!res.ok) {
+      const err = await res.json().catch(() => null);
+      alert(`儲存失敗：${err?.error ?? "請稍後再試"}`);
+      setSaving(false);
+      return;
+    }
     setSaving(false);
     setSaved(true);
     if (isNew) router.push(`${backHref}/${item.slug}`);
