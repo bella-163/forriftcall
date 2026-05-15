@@ -84,7 +84,30 @@
           "text": ""
         }
       ],
-      "crafting": [],
+      "crafting": [
+        {
+          "title": "合成方法",
+          "description": "",
+          "ingredients": [
+            {
+              "ref": {
+                "type": "materials",
+                "slug": "crystal_ingot"
+              },
+              "name": "",
+              "quantity": "64"
+            },
+            {
+              "ref": {
+                "type": "materials",
+                "slug": "Seal_of_Destiny"
+              },
+              "name": "",
+              "quantity": "1"
+            }
+          ]
+        }
+      ],
       "pieces": []
     },
     {
