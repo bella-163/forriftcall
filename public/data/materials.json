@@ -67,7 +67,18 @@
       ],
       "attributes": [],
       "skills": [],
-      "acquisition": [],
+      "acquisition": [
+        {
+          "title": "任何怪物皆有機率掉落",
+          "image": "",
+          "text": ""
+        },
+        {
+          "title": "抽獎",
+          "image": "",
+          "text": ""
+        }
+      ],
       "crafting": [],
       "pieces": []
     },
