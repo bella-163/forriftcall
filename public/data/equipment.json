@@ -15,56 +15,7 @@
         "測試",
         "123"
       ],
-      "pieces": [
-        {
-          "image": "",
-          "name": "12345",
-          "category": "",
-          "effects": [
-            "0"
-          ],
-          "rating": "",
-          "slug": "",
-          "description": "123",
-          "attributes": [
-            "無"
-          ],
-          "skills": [
-            {
-              "name": "",
-              "description": "test"
-            }
-          ],
-          "acquisition": [
-            {
-              "title": "",
-              "image": "",
-              "text": "",
-              "ref": {
-                "type": "equipment",
-                "parentSlug": "weapons",
-                "slug": "12345"
-              }
-            }
-          ],
-          "crafting": [
-            {
-              "title": "123",
-              "description": "",
-              "ingredients": [
-                {
-                  "ref": {
-                    "type": "equipment",
-                    "parentSlug": "weapons",
-                    "slug": "12345"
-                  },
-                  "name": ""
-                }
-              ]
-            }
-          ]
-        }
-      ],
+      "pieces": [],
       "attributes": [],
       "skills": [],
       "acquisition": [],
