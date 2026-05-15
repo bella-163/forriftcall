@@ -136,7 +136,30 @@
           "text": ""
         }
       ],
-      "crafting": [],
+      "crafting": [
+        {
+          "title": "合成方式",
+          "description": "",
+          "ingredients": [
+            {
+              "ref": {
+                "type": "materials",
+                "slug": "reinforcement-stone1"
+              },
+              "name": "",
+              "quantity": "2"
+            },
+            {
+              "ref": {
+                "type": "materials",
+                "slug": "crystal_ingot"
+              },
+              "name": "",
+              "quantity": "32"
+            }
+          ]
+        }
+      ],
       "pieces": []
     },
     {
