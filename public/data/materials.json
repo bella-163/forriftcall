@@ -5,7 +5,8 @@
   "categories": [
     "素材",
     "貨幣",
-    "強化素材"
+    "強化素材",
+    "重鑄素材"
   ],
   "items": [
     {
@@ -164,6 +165,23 @@
       "color": "crimson",
       "sections": {},
       "categories": [],
+      "attributes": [],
+      "skills": [],
+      "acquisition": [],
+      "crafting": [],
+      "pieces": []
+    },
+    {
+      "slug": "item-1778825585730",
+      "name": "中級重鑄石",
+      "category": "重鑄素材",
+      "description": "",
+      "image": "",
+      "color": "crimson",
+      "sections": {},
+      "categories": [
+        "重鑄素材"
+      ],
       "attributes": [],
       "skills": [],
       "acquisition": [],
