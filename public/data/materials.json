@@ -87,6 +87,23 @@
       "acquisition": [],
       "crafting": [],
       "pieces": []
+    },
+    {
+      "slug": "item-1778825222422",
+      "name": "高級重鑄石",
+      "category": "強化素材",
+      "description": "",
+      "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778653447550.png",
+      "color": "crimson",
+      "sections": {},
+      "categories": [
+        "強化素材"
+      ],
+      "attributes": [],
+      "skills": [],
+      "acquisition": [],
+      "crafting": [],
+      "pieces": []
     }
   ]
 }
