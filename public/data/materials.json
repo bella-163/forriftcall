@@ -92,9 +92,9 @@
       "slug": "reinforcement-stone3",
       "name": "高級重鑄石",
       "category": "強化素材",
-      "description": "",
+      "description": "用於強化裝備屬性\n成功機率：90%",
       "image": "https://raw.githubusercontent.com/bella-163/forriftcall/main/public/images/upload_1778653447550.png",
-      "color": "crimson",
+      "color": "green",
       "sections": {},
       "categories": [
         "強化素材"
