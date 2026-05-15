@@ -159,12 +159,14 @@
     {
       "slug": "item-1778825535950",
       "name": "初級重鑄石",
-      "category": "",
+      "category": "重鑄素材",
       "description": "",
       "image": "",
-      "color": "crimson",
+      "color": "gold",
       "sections": {},
-      "categories": [],
+      "categories": [
+        "重鑄素材"
+      ],
       "attributes": [],
       "skills": [],
       "acquisition": [],
