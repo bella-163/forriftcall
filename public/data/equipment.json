@@ -32,15 +32,11 @@
       "pieceCategories": [
         "123"
       ],
-      "pieces": [
-        {
-          "image": "",
-          "name": "123456",
-          "category": "",
-          "effects": [],
-          "rating": ""
-        }
-      ]
+      "pieces": [],
+      "attributes": [],
+      "skills": [],
+      "acquisition": [],
+      "crafting": []
     },
     {
       "slug": "accessories",
