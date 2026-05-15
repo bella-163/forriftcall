@@ -189,6 +189,23 @@
       "acquisition": [],
       "crafting": [],
       "pieces": []
+    },
+    {
+      "slug": "item-1778825640232",
+      "name": "高級重鑄石",
+      "category": "重鑄素材",
+      "description": "",
+      "image": "",
+      "color": "crimson",
+      "sections": {},
+      "categories": [
+        "重鑄素材"
+      ],
+      "attributes": [],
+      "skills": [],
+      "acquisition": [],
+      "crafting": [],
+      "pieces": []
     }
   ]
 }
