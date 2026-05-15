@@ -95,7 +95,18 @@
       ],
       "attributes": [],
       "skills": [],
-      "acquisition": [],
+      "acquisition": [
+        {
+          "title": "合成",
+          "image": "",
+          "text": ""
+        },
+        {
+          "title": "抽獎",
+          "image": "",
+          "text": ""
+        }
+      ],
       "crafting": [],
       "pieces": []
     },
