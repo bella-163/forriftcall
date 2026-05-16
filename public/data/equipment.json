@@ -148,8 +148,30 @@
             "每秒最大生命回復 +1.5"
           ],
           "skills": [],
-          "acquisition": [],
-          "crafting": []
+          "acquisition": [
+            {
+              "title": "商城合成",
+              "image": "",
+              "text": ""
+            }
+          ],
+          "crafting": [
+            {
+              "title": "合成方式",
+              "description": "",
+              "ingredients": [
+                {
+                  "ref": {
+                    "type": "equipment",
+                    "parentSlug": "contract",
+                    "slug": "book1"
+                  },
+                  "name": "",
+                  "quantity": "1"
+                }
+              ]
+            }
+          ]
         },
         {
           "slug": "",
