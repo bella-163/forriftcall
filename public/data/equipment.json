@@ -104,7 +104,11 @@
           "effects": [],
           "rating": "",
           "sections": {},
-          "attributes": [],
+          "attributes": [
+            "最大生命 +50",
+            "每秒生命回復 +2",
+            "每秒最大生命回復 +1"
+          ],
           "skills": [],
           "acquisition": [],
           "crafting": []
