@@ -214,8 +214,9 @@
                   "ref": {
                     "type": "equipment",
                     "parentSlug": "contract",
-                    "slug": "book1"
-                  }
+                    "slug": "靈祭 • 薩滿契約 II"
+                  },
+                  "quantity": "1"
                 }
               ]
             }
