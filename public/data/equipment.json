@@ -210,7 +210,12 @@
                   "quantity": "1"
                 },
                 {
-                  "name": ""
+                  "name": "",
+                  "ref": {
+                    "type": "equipment",
+                    "parentSlug": "contract",
+                    "slug": "book1"
+                  }
                 }
               ]
             }
