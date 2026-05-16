@@ -65,7 +65,7 @@
     {
       "slug": "contract",
       "name": "契約書",
-      "category": "契約書",
+      "category": "區域Boss契約書",
       "description": "",
       "image": "",
       "color": "crimson",
@@ -82,6 +82,8 @@
     "BOSS",
     "副本",
     "資料",
-    "契約書"
+    "契約書",
+    "區域Boss契約書",
+    "世界Boss契約書"
   ]
 }
