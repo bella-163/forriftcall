@@ -182,10 +182,39 @@
           "effects": [],
           "rating": "",
           "sections": {},
-          "attributes": [],
+          "attributes": [
+            "最大生命 +150",
+            "每秒生命回復 +6",
+            "每秒最大生命回復 +2"
+          ],
           "skills": [],
-          "acquisition": [],
-          "crafting": []
+          "acquisition": [
+            {
+              "title": "斷界商城合成",
+              "image": "",
+              "text": ""
+            }
+          ],
+          "crafting": [
+            {
+              "title": "合成方式",
+              "description": "",
+              "ingredients": [
+                {
+                  "ref": {
+                    "type": "equipment",
+                    "parentSlug": "contract",
+                    "slug": "book1"
+                  },
+                  "name": "",
+                  "quantity": "1"
+                },
+                {
+                  "name": ""
+                }
+              ]
+            }
+          ]
         },
         {
           "slug": "",
