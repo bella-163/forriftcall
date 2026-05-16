@@ -81,12 +81,27 @@
       "sections": {},
       "pieceCategories": [],
       "pieces": []
+    },
+    {
+      "slug": "contract",
+      "name": "契約書",
+      "category": "契約書",
+      "description": "",
+      "image": "",
+      "color": "gold",
+      "sections": {},
+      "attributes": [],
+      "skills": [],
+      "acquisition": [],
+      "crafting": [],
+      "pieces": []
     }
   ],
   "categories": [
     "裝備",
     "配件",
     "系統",
-    "套裝"
+    "套裝",
+    "契約書"
   ]
 }
