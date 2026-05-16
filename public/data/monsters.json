@@ -61,28 +61,6 @@
       "image": "",
       "color": "green",
       "sections": {}
-    },
-    {
-      "slug": "contract",
-      "name": "契約書",
-      "category": "區域Boss契約書",
-      "description": "",
-      "image": "",
-      "color": "gold",
-      "sections": {
-        "區域Boss契約書": [
-          {
-            "title": "",
-            "image": "",
-            "text": ""
-          }
-        ]
-      },
-      "attributes": [],
-      "skills": [],
-      "acquisition": [],
-      "crafting": [],
-      "pieces": []
     }
   ],
   "categories": [
