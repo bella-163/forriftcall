@@ -142,7 +142,9 @@
           "effects": [],
           "rating": "",
           "sections": {},
-          "attributes": [],
+          "attributes": [
+            "最大生命值 +100"
+          ],
           "skills": [],
           "acquisition": [],
           "crafting": []
