@@ -119,7 +119,13 @@
               "description": "每 1.5秒為6格內玩家恢復 5%最大生命"
             }
           ],
-          "acquisition": [],
+          "acquisition": [
+            {
+              "title": "哥布林薩滿",
+              "image": "",
+              "text": "擊敗 【哥布林薩滿】 有極低機率掉落"
+            }
+          ],
           "crafting": []
         }
       ]
