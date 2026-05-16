@@ -69,7 +69,15 @@
       "description": "",
       "image": "",
       "color": "gold",
-      "sections": {},
+      "sections": {
+        "區域Boss契約書": [
+          {
+            "title": "",
+            "image": "",
+            "text": ""
+          }
+        ]
+      },
       "attributes": [],
       "skills": [],
       "acquisition": [],
