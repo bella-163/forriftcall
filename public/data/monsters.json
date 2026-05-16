@@ -61,6 +61,20 @@
       "image": "",
       "color": "green",
       "sections": {}
+    },
+    {
+      "slug": "contract",
+      "name": "契約書",
+      "category": "",
+      "description": "",
+      "image": "",
+      "color": "crimson",
+      "sections": {},
+      "attributes": [],
+      "skills": [],
+      "acquisition": [],
+      "crafting": [],
+      "pieces": []
     }
   ],
   "categories": [
