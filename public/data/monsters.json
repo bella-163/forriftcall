@@ -65,7 +65,7 @@
     {
       "slug": "contract",
       "name": "契約書",
-      "category": "",
+      "category": "契約書",
       "description": "",
       "image": "",
       "color": "crimson",
@@ -81,6 +81,7 @@
     "怪物",
     "BOSS",
     "副本",
-    "資料"
+    "資料",
+    "契約書"
   ]
 }
